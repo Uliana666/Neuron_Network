@@ -6,7 +6,7 @@
 int main() {
     Network net;
     //std::ifstream test("test_circle");
-    std::ifstream test("test");
+    std::ifstream test("test_3");
     std::vector<double> v(N), g(N);
     for (int i = 0; i < 1000000; ++i) {
         for (int j = 0; j < N; ++j) test >> v[j];

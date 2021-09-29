@@ -3,6 +3,7 @@
 
 #include "const.h"
 #include "AbstractActivationFunction.h"
+#include "AbstractLossFunction.h"
 #include "random"
 
 
@@ -13,12 +14,14 @@ struct Network {
     std::vector<std::vector<std::vector<double>>> w_gradient[K - 1];
     std::vector<double> input[K], output[K];
     std::vector<AbstractActivationFunction *> function{K};
+    AbstractLossFunction* lossFunction;
 
     Network();
 
     std::vector<double> Calc(std::vector<double> data);
 
     void Learn(const std::vector<double> &data, const std::vector<double> &test);
+
     void Upgrade();
 };
 

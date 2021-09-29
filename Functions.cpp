@@ -61,3 +61,39 @@ std::vector<double> Tangent::backward_prop(const std::vector<double> &input, con
         res[i] *= 1. - calc(input[i]) * calc(input[i]);
     return res;
 }
+
+std::vector<double> Linearf::forward_prop(const std::vector<double> &input) {
+    return input;
+}
+
+std::vector<double> Linearf::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
+    return dE;
+}
+
+double Cross_Entropy::forward_prop(const std::vector<double> &output, const std::vector<double> &test) {
+    double res = 0;
+    for (size_t i = 0; i < output.size(); ++i)
+        res += (output[i] - test[i]) * (output[i] - test[i]);
+    return res / 2;
+}
+
+std::vector<double> Cross_Entropy::backward_prop(const std::vector<double> &output, const std::vector<double> &test) {
+    std::vector<double> res(output.size());
+    for (size_t i = 0; i < res.size(); ++i)
+        if (test[i] > 0.)
+            res[i] = -test[i] / output[i];
+    return res;
+}
+
+double Error_Squared::forward_prop(const std::vector<double> &output, const std::vector<double> &test) {
+    double res = 0;
+    for (size_t i = 0; i < output.size(); ++i)
+        res += (output[i] - test[i]) * (output[i] - test[i]);
+    return res / 2;
+}
+
+std::vector<double> Error_Squared::backward_prop(const std::vector<double> &output, const std::vector<double> &test) {
+    std::vector<double> res(output.size());
+    for (size_t i = 0; i < output.size(); ++i) res[i] = output[i] - test[i];
+    return res;
+}

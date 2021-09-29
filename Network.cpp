@@ -9,6 +9,9 @@ std::uniform_real_distribution<> dis(-0.5, 0.5);
 Sigmoid sigm;
 Softmax sfmx;
 Tangent tgnt;
+Linearf linr;
+Cross_Entropy crs_e;
+Error_Squared er_sq;
 
 Network::Network() {
     w[0].resize(N, std::vector<double>(K));
@@ -22,6 +25,7 @@ Network::Network() {
     for (int i = 0; i < K - 1; ++i)
         function[i] = &tgnt;
     function[K - 1] = &sfmx;
+    lossFunction = &crs_e;
 }
 
 void Network::Upgrade() {
@@ -30,7 +34,6 @@ void Network::Upgrade() {
             for (size_t k = 0; k < w[i][j].size(); ++k) {
                 for (auto g: w_gradient[i][j][k])
                     w[i][j][k] -= g / step;
-                fill(w_gradient[i][j][k].begin(), w_gradient[i][j][k].end(), 0);
             }
         }
     }
@@ -54,8 +57,7 @@ std::vector<double> Network::Calc(std::vector<double> data) {
 
 void Network::Learn(const std::vector<double> &data, const std::vector<double> &test) {
     output[K - 1] = Calc(data);
-    std::vector<double> lay(N);
-    for (int i = 0; i < N; ++i) lay[i] = output[K - 1][i] - test[i];
+    std::vector<double> lay = lossFunction->backward_prop(output[K - 1], test);
     for (int i = K - 2; i >= 0; --i) {
         lay = function[i + 1]->backward_prop(input[i + 1], lay);
         std::vector<double> lay2(sizes[i], 0.);

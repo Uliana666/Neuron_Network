@@ -3,16 +3,19 @@
 
 CMakeFiles/Neuron_Network.dir/Functions.cpp.o
  /home/uliana/Neuron_Network/AbstractActivationFunction.h
+ /home/uliana/Neuron_Network/AbstractLossFunction.h
  /home/uliana/Neuron_Network/Functions.cpp
  /home/uliana/Neuron_Network/Functions.h
 CMakeFiles/Neuron_Network.dir/Network.cpp.o
  /home/uliana/Neuron_Network/AbstractActivationFunction.h
+ /home/uliana/Neuron_Network/AbstractLossFunction.h
  /home/uliana/Neuron_Network/Functions.h
  /home/uliana/Neuron_Network/Network.cpp
  /home/uliana/Neuron_Network/Network.h
  /home/uliana/Neuron_Network/const.h
 CMakeFiles/Neuron_Network.dir/main.cpp.o
  /home/uliana/Neuron_Network/AbstractActivationFunction.h
+ /home/uliana/Neuron_Network/AbstractLossFunction.h
  /home/uliana/Neuron_Network/Network.h
  /home/uliana/Neuron_Network/const.h
  /home/uliana/Neuron_Network/main.cpp

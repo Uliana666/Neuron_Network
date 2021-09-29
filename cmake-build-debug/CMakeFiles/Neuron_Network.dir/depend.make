@@ -3,16 +3,19 @@
 
 CMakeFiles/Neuron_Network.dir/Functions.cpp.o: \
  ../AbstractActivationFunction.h \
+ ../AbstractLossFunction.h \
  ../Functions.cpp \
  ../Functions.h
 CMakeFiles/Neuron_Network.dir/Network.cpp.o: \
  ../AbstractActivationFunction.h \
+ ../AbstractLossFunction.h \
  ../Functions.h \
  ../Network.cpp \
  ../Network.h \
  ../const.h
 CMakeFiles/Neuron_Network.dir/main.cpp.o: \
  ../AbstractActivationFunction.h \
+ ../AbstractLossFunction.h \
  ../Network.h \
  ../const.h \
  ../main.cpp

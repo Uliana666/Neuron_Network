@@ -87,6 +87,9 @@
 		<Unit filename="/home/uliana/Neuron_Network/AbstractActivationFunction.h">
 			<Option target="Neuron_Network"/>
 		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/AbstractLossFunction.h">
+			<Option target="Neuron_Network"/>
+		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Functions.cpp">
 			<Option target="Neuron_Network"/>
 		</Unit>

@@ -12,9 +12,17 @@ iostream
 vector
 -
 
+/home/uliana/Neuron_Network/AbstractLossFunction.h
+iostream
+-
+vector
+-
+
 /home/uliana/Neuron_Network/Functions.h
 AbstractActivationFunction.h
 /home/uliana/Neuron_Network/AbstractActivationFunction.h
+AbstractLossFunction.h
+/home/uliana/Neuron_Network/AbstractLossFunction.h
 iostream
 -
 vector
@@ -37,16 +45,10 @@ const.h
 /home/uliana/Neuron_Network/const.h
 AbstractActivationFunction.h
 /home/uliana/Neuron_Network/AbstractActivationFunction.h
+AbstractLossFunction.h
+/home/uliana/Neuron_Network/AbstractLossFunction.h
 random
 /home/uliana/Neuron_Network/random
 
 /home/uliana/Neuron_Network/const.h
-
-/home/uliana/Neuron_Network/main.cpp
-iostream
--
-bits/stdc++.h
-/home/uliana/Neuron_Network/bits/stdc++.h
-Network.h
-/home/uliana/Neuron_Network/Network.h
 

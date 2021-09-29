@@ -8,7 +8,7 @@ int main() {
     //std::ifstream test("test_circle");
     std::ifstream test("test");
     std::vector<double> v(N), g(N);
-    for (int i = 0; i < 500000; ++i) {
+    for (int i = 0; i < 1000000; ++i) {
         for (int j = 0; j < N; ++j) test >> v[j];
         for (int j = 0; j < N; ++j) test >> g[j];
         net.Learn(v, g);

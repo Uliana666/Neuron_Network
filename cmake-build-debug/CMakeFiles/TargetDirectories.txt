@@ -1,0 +1,3 @@
+/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles/Neuron_Network.dir

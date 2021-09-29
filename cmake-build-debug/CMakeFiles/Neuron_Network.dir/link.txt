@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/Neuron_Network.dir/main.cpp.o CMakeFiles/Neuron_Network.dir/Network.cpp.o CMakeFiles/Neuron_Network.dir/Functions.cpp.o -o Neuron_Network 

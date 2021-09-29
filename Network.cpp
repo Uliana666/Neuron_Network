@@ -5,9 +5,10 @@
 #include <random>
 
 std::mt19937 gen(777);
-std::uniform_real_distribution<> dis(0.0, 0.5);
+std::uniform_real_distribution<> dis(-0.5, 0.5);
 Sigmoid sigm;
 Softmax sfmx;
+Tangent tgnt;
 
 Network::Network() {
     w[0].resize(N, std::vector<double>(K));
@@ -15,7 +16,7 @@ Network::Network() {
     w[2].resize(K, std::vector<double>(N));
     for (auto &i: w) for (auto &j: i) for (double &k: j) k = dis(gen);
     for (int i = 0; i < K - 1; ++i)
-        function[i] = &sigm;
+        function[i] = &tgnt;
     function[K - 1] = &sfmx;
 }
 

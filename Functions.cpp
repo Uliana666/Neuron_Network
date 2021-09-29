@@ -5,6 +5,10 @@ double Sigmoid::calc(const double &x) {
     return 1. / (1. + exp(-2. * x));
 }
 
+double Tangent::calc(const double &x) {
+    return (exp(x) - exp(-x)) / (exp(x) + exp(-x));
+}
+
 std::vector<double> Sigmoid::forward_prop(const std::vector<double> &input) {
     std::vector<double> res(input.size());
     for (size_t i = 0; i < res.size(); ++i)
@@ -41,5 +45,19 @@ std::vector<double> Softmax::backward_prop(const std::vector<double> &input, con
                 res[i] += dE[k] * exp(input[k]) * (sm - exp(input[k])) / sm / sm;
         }
     }
+    return res;
+}
+
+std::vector<double> Tangent::forward_prop(const std::vector<double> &input) {
+    std::vector<double> res(input.size());
+    for (size_t i = 0; i < res.size(); ++i)
+        res[i] = calc(input[i]);
+    return res;
+}
+
+std::vector<double> Tangent::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
+    std::vector<double> res = dE;
+    for (size_t i = 0; i < input.size(); ++i)
+        res[i] *= 1. - calc(input[i]) * calc(input[i]);
     return res;
 }

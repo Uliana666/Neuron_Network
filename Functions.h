@@ -19,5 +19,13 @@ class Softmax : public AbstractActivationFunction {
     std::vector<double> backward_prop(const std::vector<double> &input, const std::vector<double> &dE) override;
 };
 
+class Tangent : public AbstractActivationFunction {
+    static double calc(const double &x);
+
+    std::vector<double> forward_prop(const std::vector<double> &input) override;
+
+    std::vector<double> backward_prop(const std::vector<double> &input, const std::vector<double> &dE) override;
+};
+
 
 #endif

@@ -47,8 +47,7 @@ void Network::Education(const std::vector<double> &data, const std::vector<doubl
                 lay2[j] += lay[k] * w[i][j][k];
         for (int j = 0; j < sizes[i]; ++j)
             for (int k = 0; k < sizes[i + 1]; ++k) {
-                if (i != K - 2) w[i][j][k] -= n * lay[k] * output[i][j];
-                else w[i][j][k] -= n2 * lay[k] * output[i][j];
+                w[i][j][k] -= n * lay[k] * output[i][j];
             }
         lay = lay2;
     }

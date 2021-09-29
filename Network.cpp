@@ -12,12 +12,28 @@ Tangent tgnt;
 
 Network::Network() {
     w[0].resize(N, std::vector<double>(K));
+    w_gradient[0].resize(N, std::vector<std::vector<double>>(K));
     w[1].resize(K, std::vector<double>(K));
+    w_gradient[1].resize(K, std::vector<std::vector<double>>(K));
     w[2].resize(K, std::vector<double>(N));
+    w_gradient[2].resize(K, std::vector<std::vector<double>>(K));
     for (auto &i: w) for (auto &j: i) for (double &k: j) k = dis(gen);
+    for (auto &i: w_gradient) for (auto &j: i) for (auto &k: j) k.resize(step, 0);
     for (int i = 0; i < K - 1; ++i)
         function[i] = &tgnt;
     function[K - 1] = &sfmx;
+}
+
+void Network::Upgrade() {
+    for (int i = 0; i < K - 1; ++i) {
+        for (size_t j = 0; j < w[i].size(); ++j) {
+            for (size_t k = 0; k < w[i][j].size(); ++k) {
+                for (auto g: w_gradient[i][j][k])
+                    w[i][j][k] -= g / step;
+                fill(w_gradient[i][j][k].begin(), w_gradient[i][j][k].end(), 0);
+            }
+        }
+    }
 }
 
 std::vector<double> Network::Calc(std::vector<double> data) {
@@ -36,7 +52,7 @@ std::vector<double> Network::Calc(std::vector<double> data) {
     return function[K - 1]->forward_prop(data);
 }
 
-void Network::Education(const std::vector<double> &data, const std::vector<double> &test) {
+void Network::Learn(const std::vector<double> &data, const std::vector<double> &test) {
     output[K - 1] = Calc(data);
     std::vector<double> lay(N);
     for (int i = 0; i < N; ++i) lay[i] = output[K - 1][i] - test[i];
@@ -48,8 +64,12 @@ void Network::Education(const std::vector<double> &data, const std::vector<doubl
                 lay2[j] += lay[k] * w[i][j][k];
         for (int j = 0; j < sizes[i]; ++j)
             for (int k = 0; k < sizes[i + 1]; ++k) {
-                w[i][j][k] -= n * lay[k] * output[i][j];
+                w_gradient[i][j][k][cnt] = n * lay[k] * output[i][j];
             }
         lay = lay2;
+    }
+    if (++cnt == step) {
+        cnt = 0;
+        Upgrade();
     }
 }

@@ -11,7 +11,7 @@ int main() {
     for (int i = 0; i < 500000; ++i) {
         for (int j = 0; j < N; ++j) test >> v[j];
         for (int j = 0; j < N; ++j) test >> g[j];
-        net.Education(v, g);
+        net.Learn(v, g);
     }
     std::cout << "GO" << std::endl;
     while (true) {

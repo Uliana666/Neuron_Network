@@ -8,7 +8,7 @@ typedef long double ld;
 
 int main() {
     ofstream tt("test_circle");
-    for (ll i = 0; i < 5000000; ++i) {
+    for (int i = 0; i < 5000000; ++i) {
         ld a = ld(rnd()) / rnd.max();
         ld b = ld(rnd()) / rnd.max();
         //if (rnd() & 1) a = -a;

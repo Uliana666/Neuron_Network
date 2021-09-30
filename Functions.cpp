@@ -76,8 +76,8 @@ std::vector<double> Linearf::backward_prop(const std::vector<double> &input, con
 double Cross_Entropy::forward_prop(const std::vector<double> &output, const std::vector<double> &test) {
     double res = 0;
     for (size_t i = 0; i < output.size(); ++i)
-        res += (output[i] - test[i]) * (output[i] - test[i]);
-    return res / 2;
+        res -= test[i] * log(output[i]);
+    return res;
 }
 
 std::vector<double> Cross_Entropy::backward_prop(const std::vector<double> &output, const std::vector<double> &test) {

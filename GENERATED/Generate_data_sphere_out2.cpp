@@ -19,11 +19,12 @@ int main() {
         if (rnd() & 1) b /= 3;
         if (rnd() & 1) c /= 3;
         tt << a << ' ' << b << ' ' << c << '\n';
-        if (sqrt(a * a + b * b + c * c) <= 0.6) tt << "1 0 0\n";
+        if (sqrt(a * a + b * b + c * c) <= 0.6) tt << "1 0\n";
         else
-            tt << "0 1 0\n";
+            tt << "0 1\n";
     }
 }
+
 
 
 

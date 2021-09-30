@@ -1,5 +1,6 @@
 #include "Functions.h"
 #include "cmath"
+#include "cassert"
 
 double Sigmoid::calc(const double &x) {
     return 1. / (1. + exp(-2. * x));
@@ -18,6 +19,7 @@ std::vector<double> Sigmoid::forward_prop(const std::vector<double> &input) {
 
 std::vector<double> Sigmoid::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
     std::vector<double> res = dE;
+    assert(input.size() == dE.size());
     for (size_t i = 0; i < input.size(); ++i)
         res[i] *= 2. * calc(input[i]) * (1. - calc(input[i]));
     return res;
@@ -57,6 +59,7 @@ std::vector<double> Tangent::forward_prop(const std::vector<double> &input) {
 
 std::vector<double> Tangent::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
     std::vector<double> res = dE;
+    assert(input.size() == dE.size());
     for (size_t i = 0; i < input.size(); ++i)
         res[i] *= 1. - calc(input[i]) * calc(input[i]);
     return res;
@@ -79,6 +82,7 @@ double Cross_Entropy::forward_prop(const std::vector<double> &output, const std:
 
 std::vector<double> Cross_Entropy::backward_prop(const std::vector<double> &output, const std::vector<double> &test) {
     std::vector<double> res(output.size());
+    assert(output.size() == test.size());
     for (size_t i = 0; i < res.size(); ++i)
         if (test[i] > 0.)
             res[i] = -test[i] / output[i];
@@ -94,6 +98,7 @@ double Error_Squared::forward_prop(const std::vector<double> &output, const std:
 
 std::vector<double> Error_Squared::backward_prop(const std::vector<double> &output, const std::vector<double> &test) {
     std::vector<double> res(output.size());
+    assert(output.size() == test.size());
     for (size_t i = 0; i < output.size(); ++i) res[i] = output[i] - test[i];
     return res;
 }

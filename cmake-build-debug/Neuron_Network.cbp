@@ -102,9 +102,6 @@
 		<Unit filename="/home/uliana/Neuron_Network/Network.h">
 			<Option target="Neuron_Network"/>
 		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/const.h">
-			<Option target="Neuron_Network"/>
-		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/main.cpp">
 			<Option target="Neuron_Network"/>
 		</Unit>

@@ -1,6 +1,5 @@
 #include "Functions.h"
-#include "cmath"
-#include "cassert"
+#include <cmath>
 
 double Sigmoid::calc(const double &x) {
     return 1. / (1. + exp(-2. * x));
@@ -19,7 +18,6 @@ std::vector<double> Sigmoid::forward_prop(const std::vector<double> &input) {
 
 std::vector<double> Sigmoid::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
     std::vector<double> res = dE;
-    assert(input.size() == dE.size());
     for (size_t i = 0; i < input.size(); ++i)
         res[i] *= 2. * calc(input[i]) * (1. - calc(input[i]));
     return res;
@@ -59,17 +57,16 @@ std::vector<double> Tangent::forward_prop(const std::vector<double> &input) {
 
 std::vector<double> Tangent::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
     std::vector<double> res = dE;
-    assert(input.size() == dE.size());
     for (size_t i = 0; i < input.size(); ++i)
         res[i] *= 1. - calc(input[i]) * calc(input[i]);
     return res;
 }
 
-std::vector<double> Linearf::forward_prop(const std::vector<double> &input) {
+std::vector<double> Linear_function::forward_prop(const std::vector<double> &input) {
     return input;
 }
 
-std::vector<double> Linearf::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
+std::vector<double> Linear_function::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
     return dE;
 }
 
@@ -82,7 +79,6 @@ double Cross_Entropy::forward_prop(const std::vector<double> &output, const std:
 
 std::vector<double> Cross_Entropy::backward_prop(const std::vector<double> &output, const std::vector<double> &test) {
     std::vector<double> res(output.size());
-    assert(output.size() == test.size());
     for (size_t i = 0; i < res.size(); ++i)
         if (test[i] > 0.)
             res[i] = -test[i] / output[i];
@@ -93,12 +89,11 @@ double Error_Squared::forward_prop(const std::vector<double> &output, const std:
     double res = 0;
     for (size_t i = 0; i < output.size(); ++i)
         res += (output[i] - test[i]) * (output[i] - test[i]);
-    return res / 2;
+    return res / test.size();
 }
 
 std::vector<double> Error_Squared::backward_prop(const std::vector<double> &output, const std::vector<double> &test) {
     std::vector<double> res(output.size());
-    assert(output.size() == test.size());
-    for (size_t i = 0; i < output.size(); ++i) res[i] = output[i] - test[i];
+    for (size_t i = 0; i < output.size(); ++i) res[i] = 2. * (output[i] - test[i]) / test.size();
     return res;
 }

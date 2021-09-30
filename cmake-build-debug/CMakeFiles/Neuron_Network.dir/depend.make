@@ -11,11 +11,10 @@ CMakeFiles/Neuron_Network.dir/Network.cpp.o: \
  ../AbstractLossFunction.h \
  ../Functions.h \
  ../Network.cpp \
- ../Network.h \
- ../const.h
+ ../Network.h
 CMakeFiles/Neuron_Network.dir/main.cpp.o: \
  ../AbstractActivationFunction.h \
  ../AbstractLossFunction.h \
+ ../Functions.h \
  ../Network.h \
- ../const.h \
  ../main.cpp

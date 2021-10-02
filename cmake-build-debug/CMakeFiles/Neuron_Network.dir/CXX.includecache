@@ -20,6 +20,18 @@ iostream
 vector
 -
 
+/home/uliana/Neuron_Network/ExpressionTree.h
+NodeTree.h
+/home/uliana/Neuron_Network/NodeTree.h
+Operations.h
+/home/uliana/Neuron_Network/Operations.h
+
+/home/uliana/Neuron_Network/Functions.cpp
+Functions.h
+/home/uliana/Neuron_Network/Functions.h
+cmath
+-
+
 /home/uliana/Neuron_Network/Functions.h
 AbstractActivationFunction.h
 /home/uliana/Neuron_Network/AbstractActivationFunction.h
@@ -32,6 +44,20 @@ vector
 memory
 -
 
+/home/uliana/Neuron_Network/Network.cpp
+Network.h
+/home/uliana/Neuron_Network/Network.h
+Functions.h
+/home/uliana/Neuron_Network/Functions.h
+iostream
+-
+random
+-
+utility
+-
+ExpressionTree.h
+/home/uliana/Neuron_Network/ExpressionTree.h
+
 /home/uliana/Neuron_Network/Network.h
 AbstractActivationFunction.h
 /home/uliana/Neuron_Network/AbstractActivationFunction.h
@@ -41,6 +67,12 @@ random
 -
 memory
 -
+
+/home/uliana/Neuron_Network/NodeTree.h
+
+/home/uliana/Neuron_Network/Operations.h
+NodeTree.h
+/home/uliana/Neuron_Network/NodeTree.h
 
 /home/uliana/Neuron_Network/main.cpp
 iostream
@@ -53,4 +85,10 @@ Network.h
 /home/uliana/Neuron_Network/Network.h
 Functions.h
 /home/uliana/Neuron_Network/Functions.h
+ExpressionTree.h
+/home/uliana/Neuron_Network/ExpressionTree.h
+NodeTree.h
+/home/uliana/Neuron_Network/NodeTree.h
+Operations.h
+/home/uliana/Neuron_Network/Operations.h
 

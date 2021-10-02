@@ -129,6 +129,30 @@ Neuron_Network/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/build
 .PHONY : Neuron_Network/fast
 
+ExpressionTree.o: ExpressionTree.cpp.o
+.PHONY : ExpressionTree.o
+
+# target to build an object file
+ExpressionTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o
+.PHONY : ExpressionTree.cpp.o
+
+ExpressionTree.i: ExpressionTree.cpp.i
+.PHONY : ExpressionTree.i
+
+# target to preprocess a source file
+ExpressionTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.i
+.PHONY : ExpressionTree.cpp.i
+
+ExpressionTree.s: ExpressionTree.cpp.s
+.PHONY : ExpressionTree.s
+
+# target to generate assembly for a file
+ExpressionTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.s
+.PHONY : ExpressionTree.cpp.s
+
 Functions.o: Functions.cpp.o
 .PHONY : Functions.o
 
@@ -177,6 +201,54 @@ Network.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Network.cpp.s
 .PHONY : Network.cpp.s
 
+NodeTree.o: NodeTree.cpp.o
+.PHONY : NodeTree.o
+
+# target to build an object file
+NodeTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/NodeTree.cpp.o
+.PHONY : NodeTree.cpp.o
+
+NodeTree.i: NodeTree.cpp.i
+.PHONY : NodeTree.i
+
+# target to preprocess a source file
+NodeTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/NodeTree.cpp.i
+.PHONY : NodeTree.cpp.i
+
+NodeTree.s: NodeTree.cpp.s
+.PHONY : NodeTree.s
+
+# target to generate assembly for a file
+NodeTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/NodeTree.cpp.s
+.PHONY : NodeTree.cpp.s
+
+Operations.o: Operations.cpp.o
+.PHONY : Operations.o
+
+# target to build an object file
+Operations.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Operations.cpp.o
+.PHONY : Operations.cpp.o
+
+Operations.i: Operations.cpp.i
+.PHONY : Operations.i
+
+# target to preprocess a source file
+Operations.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Operations.cpp.i
+.PHONY : Operations.cpp.i
+
+Operations.s: Operations.cpp.s
+.PHONY : Operations.s
+
+# target to generate assembly for a file
+Operations.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Operations.cpp.s
+.PHONY : Operations.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -210,12 +282,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Neuron_Network"
+	@echo "... ExpressionTree.o"
+	@echo "... ExpressionTree.i"
+	@echo "... ExpressionTree.s"
 	@echo "... Functions.o"
 	@echo "... Functions.i"
 	@echo "... Functions.s"
 	@echo "... Network.o"
 	@echo "... Network.i"
 	@echo "... Network.s"
+	@echo "... NodeTree.o"
+	@echo "... NodeTree.i"
+	@echo "... NodeTree.s"
+	@echo "... Operations.o"
+	@echo "... Operations.i"
+	@echo "... Operations.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

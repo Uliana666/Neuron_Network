@@ -1,6 +1,9 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o"
   "CMakeFiles/Neuron_Network.dir/Functions.cpp.o"
   "CMakeFiles/Neuron_Network.dir/Network.cpp.o"
+  "CMakeFiles/Neuron_Network.dir/NodeTree.cpp.o"
+  "CMakeFiles/Neuron_Network.dir/Operations.cpp.o"
   "CMakeFiles/Neuron_Network.dir/main.cpp.o"
   "Neuron_Network"
   "Neuron_Network.pdb"

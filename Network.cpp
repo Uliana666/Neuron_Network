@@ -3,7 +3,7 @@
 #include <iostream>
 #include <random>
 #include <utility>
-
+#include "ExpressionTree.h"
 
 Network::Network(size_t layers_, std::vector<size_t> size_layers, double speed_,
                  std::vector<std::shared_ptr<AbstractActivationFunction>> func, std::shared_ptr<AbstractLossFunction> loss) :

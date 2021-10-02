@@ -105,11 +105,53 @@ CMakeFiles/Neuron_Network.dir/Functions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Neuron_Network.dir/Functions.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uliana/Neuron_Network/Functions.cpp -o CMakeFiles/Neuron_Network.dir/Functions.cpp.s
 
+CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o: CMakeFiles/Neuron_Network.dir/flags.make
+CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o: ../ExpressionTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o -c /home/uliana/Neuron_Network/ExpressionTree.cpp
+
+CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uliana/Neuron_Network/ExpressionTree.cpp > CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.i
+
+CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uliana/Neuron_Network/ExpressionTree.cpp -o CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.s
+
+CMakeFiles/Neuron_Network.dir/NodeTree.cpp.o: CMakeFiles/Neuron_Network.dir/flags.make
+CMakeFiles/Neuron_Network.dir/NodeTree.cpp.o: ../NodeTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Neuron_Network.dir/NodeTree.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Neuron_Network.dir/NodeTree.cpp.o -c /home/uliana/Neuron_Network/NodeTree.cpp
+
+CMakeFiles/Neuron_Network.dir/NodeTree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Neuron_Network.dir/NodeTree.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uliana/Neuron_Network/NodeTree.cpp > CMakeFiles/Neuron_Network.dir/NodeTree.cpp.i
+
+CMakeFiles/Neuron_Network.dir/NodeTree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Neuron_Network.dir/NodeTree.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uliana/Neuron_Network/NodeTree.cpp -o CMakeFiles/Neuron_Network.dir/NodeTree.cpp.s
+
+CMakeFiles/Neuron_Network.dir/Operations.cpp.o: CMakeFiles/Neuron_Network.dir/flags.make
+CMakeFiles/Neuron_Network.dir/Operations.cpp.o: ../Operations.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Neuron_Network.dir/Operations.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Neuron_Network.dir/Operations.cpp.o -c /home/uliana/Neuron_Network/Operations.cpp
+
+CMakeFiles/Neuron_Network.dir/Operations.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Neuron_Network.dir/Operations.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uliana/Neuron_Network/Operations.cpp > CMakeFiles/Neuron_Network.dir/Operations.cpp.i
+
+CMakeFiles/Neuron_Network.dir/Operations.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Neuron_Network.dir/Operations.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uliana/Neuron_Network/Operations.cpp -o CMakeFiles/Neuron_Network.dir/Operations.cpp.s
+
 # Object files for target Neuron_Network
 Neuron_Network_OBJECTS = \
 "CMakeFiles/Neuron_Network.dir/main.cpp.o" \
 "CMakeFiles/Neuron_Network.dir/Network.cpp.o" \
-"CMakeFiles/Neuron_Network.dir/Functions.cpp.o"
+"CMakeFiles/Neuron_Network.dir/Functions.cpp.o" \
+"CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o" \
+"CMakeFiles/Neuron_Network.dir/NodeTree.cpp.o" \
+"CMakeFiles/Neuron_Network.dir/Operations.cpp.o"
 
 # External object files for target Neuron_Network
 Neuron_Network_EXTERNAL_OBJECTS =
@@ -117,9 +159,12 @@ Neuron_Network_EXTERNAL_OBJECTS =
 Neuron_Network: CMakeFiles/Neuron_Network.dir/main.cpp.o
 Neuron_Network: CMakeFiles/Neuron_Network.dir/Network.cpp.o
 Neuron_Network: CMakeFiles/Neuron_Network.dir/Functions.cpp.o
+Neuron_Network: CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o
+Neuron_Network: CMakeFiles/Neuron_Network.dir/NodeTree.cpp.o
+Neuron_Network: CMakeFiles/Neuron_Network.dir/Operations.cpp.o
 Neuron_Network: CMakeFiles/Neuron_Network.dir/build.make
 Neuron_Network: CMakeFiles/Neuron_Network.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Neuron_Network"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Neuron_Network"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Neuron_Network.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

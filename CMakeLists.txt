@@ -3,5 +3,5 @@ project(Neuron_Network)
 
 set(CMAKE_CXX_STANDARD 17)
 include_directories("${PROJECT_SOURCE_DIR}/inc/")
-add_executable(Neuron_Network main.cpp Network.cpp Network.h Functions.cpp Functions.h AbstractActivationFunction.h AbstractLossFunction.h)
+add_executable(Neuron_Network main.cpp Network.cpp Network.h Functions.cpp Functions.h AbstractActivationFunction.h AbstractLossFunction.h ExpressionTree.cpp ExpressionTree.h NodeTree.cpp NodeTree.h Operations.cpp Operations.h)
 

@@ -90,6 +90,12 @@
 		<Unit filename="/home/uliana/Neuron_Network/AbstractLossFunction.h">
 			<Option target="Neuron_Network"/>
 		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/ExpressionTree.cpp">
+			<Option target="Neuron_Network"/>
+		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/ExpressionTree.h">
+			<Option target="Neuron_Network"/>
+		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Functions.cpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
@@ -100,6 +106,18 @@
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Network.h">
+			<Option target="Neuron_Network"/>
+		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/NodeTree.cpp">
+			<Option target="Neuron_Network"/>
+		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/NodeTree.h">
+			<Option target="Neuron_Network"/>
+		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/Operations.cpp">
+			<Option target="Neuron_Network"/>
+		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/Operations.h">
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/main.cpp">

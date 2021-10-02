@@ -12,7 +12,9 @@ struct Network {
     size_t LAYERS;
     std::vector<size_t> sizes;
     std::vector<std::vector<std::vector<double>>> w{LAYERS - 1};
+    std::vector<std::vector<double>> b{LAYERS};
     std::vector<std::vector<std::vector<double>>> w_gradient{LAYERS - 1};
+    std::vector<std::vector<double>> b_gradient{LAYERS};
     std::vector<std::vector<double>> input{LAYERS}, output{LAYERS};
     std::vector<AbstractActivationFunction *> function;
     AbstractLossFunction *lossFunction;

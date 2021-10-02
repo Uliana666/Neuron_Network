@@ -97,3 +97,16 @@ std::vector<double> Error_Squared::backward_prop(const std::vector<double> &outp
     for (size_t i = 0; i < output.size(); ++i) res[i] = 2. * (output[i] - test[i]) / test.size();
     return res;
 }
+std::vector<double> ReLu::forward_prop(const std::vector<double> &input) {
+    std::vector<double> res(input.size());
+    for (size_t i = 0; i < res.size(); ++i)
+        res[i] = input[i] < 0 ? 0.01 * input[i] : input[i];
+    return res;
+}
+
+std::vector<double> ReLu::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
+    std::vector<double> res = dE;
+    for (size_t i = 0; i < input.size(); ++i)
+        res[i] *= input[i] < 0 ? 0.01 : 1.;
+    return res;
+}

@@ -28,6 +28,18 @@ iostream
 vector
 -
 
+/home/uliana/Neuron_Network/Network.cpp
+Network.h
+/home/uliana/Neuron_Network/Network.h
+Functions.h
+/home/uliana/Neuron_Network/Functions.h
+iostream
+-
+random
+-
+utility
+-
+
 /home/uliana/Neuron_Network/Network.h
 AbstractActivationFunction.h
 /home/uliana/Neuron_Network/AbstractActivationFunction.h

@@ -27,6 +27,11 @@ class Tangent : public AbstractActivationFunction {
 
     std::vector<double> backward_prop(const std::vector<double> &input, const std::vector<double> &dE) override;
 };
+class ReLu : public AbstractActivationFunction {
+    std::vector<double> forward_prop(const std::vector<double> &input) override;
+
+    std::vector<double> backward_prop(const std::vector<double> &input, const std::vector<double> &dE) override;
+};
 
 class Linear_function : public AbstractActivationFunction {
     std::vector<double> forward_prop(const std::vector<double> &input) override;

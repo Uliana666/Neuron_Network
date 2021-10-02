@@ -6,7 +6,7 @@
 
 
 Network::Network(size_t layers_, std::vector<size_t> size_layers, double speed_,
-                 std::vector<AbstractActivationFunction *> func, AbstractLossFunction *loss) :
+                 std::vector<std::shared_ptr<AbstractActivationFunction>> func, std::shared_ptr<AbstractLossFunction> loss) :
         LAYERS(layers_), sizes(std::move(size_layers)), speed(speed_), function(std::move(func)), lossFunction(loss) {
     std::mt19937 gen(777);
     std::uniform_real_distribution<> dis(-0.5, 0.5);

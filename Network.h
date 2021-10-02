@@ -4,6 +4,7 @@
 #include "AbstractActivationFunction.h"
 #include "AbstractLossFunction.h"
 #include <random>
+#include <memory>
 
 
 struct Network {
@@ -16,11 +17,11 @@ struct Network {
     std::vector<std::vector<std::vector<double>>> w_gradient{LAYERS - 1};
     std::vector<std::vector<double>> b_gradient{LAYERS};
     std::vector<std::vector<double>> input{LAYERS}, output{LAYERS};
-    std::vector<AbstractActivationFunction *> function;
-    AbstractLossFunction *lossFunction;
+    std::vector<std::shared_ptr<AbstractActivationFunction>> function;
+    std::shared_ptr<AbstractLossFunction> lossFunction;
 
     Network(size_t layers_, std::vector<size_t> size_layers, double speed_,
-            std::vector<AbstractActivationFunction *> func, AbstractLossFunction *loss);
+            std::vector<std::shared_ptr<AbstractActivationFunction>> func, std::shared_ptr<AbstractLossFunction> loss);
 
     std::vector<double> Calc(std::vector<double> data);
 

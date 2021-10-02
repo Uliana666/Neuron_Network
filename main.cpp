@@ -1,35 +1,37 @@
 #include <iostream>
 #include <bits/stdc++.h>
+#include <memory>
 
 #include "Network.h"
 #include "Functions.h"
 
 const int IN = 2, OUT = 2;
-//using namespace std;
 
 Network net_ret() {
-    AbstractActivationFunction *sigm = new Sigmoid();
-    AbstractActivationFunction *sfmx = new Softmax();
-    AbstractActivationFunction *tgnt = new Tangent();
-    AbstractActivationFunction *linr = new Linear_function();
-    AbstractActivationFunction *relu = new ReLu();
-    AbstractLossFunction *crs_e = new Cross_Entropy();
-    AbstractLossFunction *er_sq = new Error_Squared();
-
-    return Network(4, {IN, 4, 4, OUT}, 0.5, {tgnt, tgnt, tgnt, sfmx}, crs_e);
+    Sigmoid sigm;
+    Softmax sfmx;
+    Tangent tgnt;
+    Linear_function linr;
+    ReLu relu;
+    Cross_Entropy crs_e;
+    Error_Squared er_sq;
+    return Network(4, {IN, 4, 4, OUT}, 0.5,
+                   {tgnt.GetSharedPtr(), tgnt.GetSharedPtr(), tgnt.GetSharedPtr(), sfmx.GetSharedPtr()},
+                   crs_e.GetSharedPtr());
 }
+
 
 int main() {
     auto net = net_ret();
     std::ifstream test("test_circle");
-    std::cout << "OK" << std::endl;
     std::vector<double> v(IN), g(OUT);
-    for (int i = 0; i < 5000000; ++i) {
+    for (int i = 0; i < 500000; ++i) {
         for (int j = 0; j < IN; ++j) test >> v[j];
         for (int j = 0; j < OUT; ++j) test >> g[j];
         net.BackwardProp(v, g);
         if ((i + 1) % 10 == 0) net.Step();
     }
+    std::cout << "GO" << std::endl;
     while (true) {
         std::vector<double> val(IN);
         for (int i = 0; i < IN; ++i) std::cin >> val[i];

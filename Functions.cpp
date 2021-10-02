@@ -23,6 +23,10 @@ std::vector<double> Sigmoid::backward_prop(const std::vector<double> &input, con
     return res;
 }
 
+std::shared_ptr<AbstractActivationFunction> Sigmoid::GetSharedPtr() {
+    return std::static_pointer_cast<Sigmoid>(std::shared_ptr<Sigmoid>(new Sigmoid));
+}
+
 std::vector<double> Softmax::forward_prop(const std::vector<double> &input) {
     std::vector<double> res(input.size());
     double sm = 0;
@@ -48,6 +52,10 @@ std::vector<double> Softmax::backward_prop(const std::vector<double> &input, con
     return res;
 }
 
+std::shared_ptr<AbstractActivationFunction> Softmax::GetSharedPtr() {
+    return std::static_pointer_cast<Softmax>(std::shared_ptr<Softmax>(new Softmax));
+}
+
 std::vector<double> Tangent::forward_prop(const std::vector<double> &input) {
     std::vector<double> res(input.size());
     for (size_t i = 0; i < res.size(); ++i)
@@ -62,12 +70,20 @@ std::vector<double> Tangent::backward_prop(const std::vector<double> &input, con
     return res;
 }
 
+std::shared_ptr<AbstractActivationFunction> Tangent::GetSharedPtr() {
+    return std::static_pointer_cast<Tangent>(std::shared_ptr<Tangent>(new Tangent));
+}
+
 std::vector<double> Linear_function::forward_prop(const std::vector<double> &input) {
     return input;
 }
 
 std::vector<double> Linear_function::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
     return dE;
+}
+
+std::shared_ptr<AbstractActivationFunction> Linear_function::GetSharedPtr() {
+    return std::static_pointer_cast<Linear_function>(std::shared_ptr<Linear_function>(new Linear_function));
 }
 
 double Cross_Entropy::forward_prop(const std::vector<double> &output, const std::vector<double> &test) {
@@ -85,6 +101,10 @@ std::vector<double> Cross_Entropy::backward_prop(const std::vector<double> &outp
     return res;
 }
 
+std::shared_ptr<AbstractLossFunction> Cross_Entropy::GetSharedPtr() {
+    return std::static_pointer_cast<Cross_Entropy>(std::shared_ptr<Cross_Entropy>(new Cross_Entropy));
+}
+
 double Error_Squared::forward_prop(const std::vector<double> &output, const std::vector<double> &test) {
     double res = 0;
     for (size_t i = 0; i < output.size(); ++i)
@@ -97,6 +117,11 @@ std::vector<double> Error_Squared::backward_prop(const std::vector<double> &outp
     for (size_t i = 0; i < output.size(); ++i) res[i] = 2. * (output[i] - test[i]) / test.size();
     return res;
 }
+
+std::shared_ptr<AbstractLossFunction> Error_Squared::GetSharedPtr() {
+    return std::static_pointer_cast<Error_Squared>(std::shared_ptr<Error_Squared>(new Error_Squared));
+}
+
 std::vector<double> ReLu::forward_prop(const std::vector<double> &input) {
     std::vector<double> res(input.size());
     for (size_t i = 0; i < res.size(); ++i)
@@ -109,4 +134,8 @@ std::vector<double> ReLu::backward_prop(const std::vector<double> &input, const 
     for (size_t i = 0; i < input.size(); ++i)
         res[i] *= input[i] < 0 ? 0.01 : 1.;
     return res;
+}
+
+std::shared_ptr<AbstractActivationFunction> ReLu::GetSharedPtr() {
+    return std::static_pointer_cast<ReLu>(std::shared_ptr<ReLu>(new ReLu));
 }

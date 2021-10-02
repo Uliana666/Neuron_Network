@@ -5,6 +5,7 @@
 #include "AbstractLossFunction.h"
 #include <iostream>
 #include <vector>
+#include <memory>
 
 struct Sigmoid : public AbstractActivationFunction {
     static double calc(const double &x);
@@ -12,42 +13,65 @@ struct Sigmoid : public AbstractActivationFunction {
     std::vector<double> forward_prop(const std::vector<double> &input) override;
 
     std::vector<double> backward_prop(const std::vector<double> &input, const std::vector<double> &dE) override;
+
+    std::shared_ptr<AbstractActivationFunction> GetSharedPtr();
 };
 
-class Softmax : public AbstractActivationFunction {
+struct Softmax : public AbstractActivationFunction {
     std::vector<double> forward_prop(const std::vector<double> &input) override;
 
     std::vector<double> backward_prop(const std::vector<double> &input, const std::vector<double> &dE) override;
+
+
+    std::shared_ptr<AbstractActivationFunction> GetSharedPtr();
+
 };
 
-class Tangent : public AbstractActivationFunction {
+struct Tangent : public AbstractActivationFunction {
     static double calc(const double &x);
 
     std::vector<double> forward_prop(const std::vector<double> &input) override;
 
     std::vector<double> backward_prop(const std::vector<double> &input, const std::vector<double> &dE) override;
+
+    std::shared_ptr<AbstractActivationFunction> GetSharedPtr();
 };
-class ReLu : public AbstractActivationFunction {
+
+struct ReLu : public AbstractActivationFunction {
     std::vector<double> forward_prop(const std::vector<double> &input) override;
 
     std::vector<double> backward_prop(const std::vector<double> &input, const std::vector<double> &dE) override;
+
+
+    std::shared_ptr<AbstractActivationFunction> GetSharedPtr();
+
 };
 
-class Linear_function : public AbstractActivationFunction {
+struct Linear_function : public AbstractActivationFunction {
     std::vector<double> forward_prop(const std::vector<double> &input) override;
 
     std::vector<double> backward_prop(const std::vector<double> &input, const std::vector<double> &dE) override;
+
+    std::shared_ptr<AbstractActivationFunction> GetSharedPtr();
+
 };
 
-class Cross_Entropy : public AbstractLossFunction {
+struct Cross_Entropy : public AbstractLossFunction {
     double forward_prop(const std::vector<double> &output, const std::vector<double> &test) override;
 
     std::vector<double> backward_prop(const std::vector<double> &output, const std::vector<double> &test) override;
+
+    std::shared_ptr<AbstractLossFunction> GetSharedPtr();
+
 };
-class Error_Squared : public AbstractLossFunction {
+
+struct Error_Squared : public AbstractLossFunction {
     double forward_prop(const std::vector<double> &output, const std::vector<double> &test) override;
 
     std::vector<double> backward_prop(const std::vector<double> &output, const std::vector<double> &test) override;
+
+    std::shared_ptr<AbstractLossFunction> GetSharedPtr();
+
 };
 
 #endif

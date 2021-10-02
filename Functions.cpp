@@ -9,21 +9,21 @@ double Tangh::calc(const double &x) {
     return (exp(x) - exp(-x)) / (exp(x) + exp(-x));
 }
 
-std::vector<double> Sigmoid::forward_prop(const std::vector<double> &input) {
+std::vector<double> Sigmoid::ForwardProp(const std::vector<double> &input) {
     std::vector<double> res(input.size());
     for (size_t i = 0; i < res.size(); ++i)
         res[i] = calc(input[i]);
     return res;
 }
 
-std::vector<double> Sigmoid::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
+std::vector<double> Sigmoid::BackwardProp(const std::vector<double> &input, const std::vector<double> &dE) {
     std::vector<double> res = dE;
     for (size_t i = 0; i < input.size(); ++i)
         res[i] *= 2. * calc(input[i]) * (1. - calc(input[i]));
     return res;
 }
 
-std::vector<double> Softmax::forward_prop(const std::vector<double> &input) {
+std::vector<double> Softmax::ForwardProp(const std::vector<double> &input) {
     std::vector<double> res(input.size());
     double sm = 0;
     for (auto &e: input)
@@ -33,7 +33,7 @@ std::vector<double> Softmax::forward_prop(const std::vector<double> &input) {
     return res;
 }
 
-std::vector<double> Softmax::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
+std::vector<double> Softmax::BackwardProp(const std::vector<double> &input, const std::vector<double> &dE) {
     std::vector<double> res(dE.size(), 0);
     double sm = 0;
     for (auto e: input) sm += exp(e);
@@ -48,14 +48,14 @@ std::vector<double> Softmax::backward_prop(const std::vector<double> &input, con
     return res;
 }
 
-std::vector<double> Tangh::forward_prop(const std::vector<double> &input) {
+std::vector<double> Tangh::ForwardProp(const std::vector<double> &input) {
     std::vector<double> res(input.size());
     for (size_t i = 0; i < res.size(); ++i)
         res[i] = calc(input[i]);
     return res;
 }
 
-std::vector<double> Tangh::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
+std::vector<double> Tangh::BackwardProp(const std::vector<double> &input, const std::vector<double> &dE) {
     std::vector<double> res = dE;
     for (size_t i = 0; i < input.size(); ++i)
         res[i] *= 1. - calc(input[i]) * calc(input[i]);
@@ -63,22 +63,22 @@ std::vector<double> Tangh::backward_prop(const std::vector<double> &input, const
 }
 
 
-std::vector<double> Linear_function::forward_prop(const std::vector<double> &input) {
+std::vector<double> LinearFunction::ForwardProp(const std::vector<double> &input) {
     return input;
 }
 
-std::vector<double> Linear_function::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
+std::vector<double> LinearFunction::BackwardProp(const std::vector<double> &input, const std::vector<double> &dE) {
     return dE;
 }
 
-double Cross_Entropy::forward_prop(const std::vector<double> &output, const std::vector<double> &test) {
+double CrossEntropy::ForwardProp(const std::vector<double> &output, const std::vector<double> &test) {
     double res = 0;
     for (size_t i = 0; i < output.size(); ++i)
         res -= test[i] * log(output[i]);
     return res;
 }
 
-std::vector<double> Cross_Entropy::backward_prop(const std::vector<double> &output, const std::vector<double> &test) {
+std::vector<double> CrossEntropy::BackwardProp(const std::vector<double> &output, const std::vector<double> &test) {
     std::vector<double> res(output.size());
     for (size_t i = 0; i < res.size(); ++i)
         if (test[i] > 0.)
@@ -86,27 +86,27 @@ std::vector<double> Cross_Entropy::backward_prop(const std::vector<double> &outp
     return res;
 }
 
-double Error_Squared::forward_prop(const std::vector<double> &output, const std::vector<double> &test) {
+double ErrorSquared::ForwardProp(const std::vector<double> &output, const std::vector<double> &test) {
     double res = 0;
     for (size_t i = 0; i < output.size(); ++i)
         res += (output[i] - test[i]) * (output[i] - test[i]);
     return res / test.size();
 }
 
-std::vector<double> Error_Squared::backward_prop(const std::vector<double> &output, const std::vector<double> &test) {
+std::vector<double> ErrorSquared::BackwardProp(const std::vector<double> &output, const std::vector<double> &test) {
     std::vector<double> res(output.size());
     for (size_t i = 0; i < output.size(); ++i) res[i] = 2. * (output[i] - test[i]) / test.size();
     return res;
 }
 
-std::vector<double> ReLu::forward_prop(const std::vector<double> &input) {
+std::vector<double> ReLu::ForwardProp(const std::vector<double> &input) {
     std::vector<double> res(input.size());
     for (size_t i = 0; i < res.size(); ++i)
         res[i] = input[i] < 0 ? 0.01 * input[i] : input[i];
     return res;
 }
 
-std::vector<double> ReLu::backward_prop(const std::vector<double> &input, const std::vector<double> &dE) {
+std::vector<double> ReLu::BackwardProp(const std::vector<double> &input, const std::vector<double> &dE) {
     std::vector<double> res = dE;
     for (size_t i = 0; i < input.size(); ++i)
         res[i] *= input[i] < 0 ? 0.01 : 1.;

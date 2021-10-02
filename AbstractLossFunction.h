@@ -4,8 +4,8 @@
 #include <vector>
 
 struct AbstractLossFunction {
-    virtual double forward_prop(const std::vector<double> &output, const std::vector<double> &test) = 0;
+    virtual double ForwardProp(const std::vector<double> &output, const std::vector<double> &test) = 0;
 
-    virtual std::vector<double> backward_prop(const std::vector<double> &output, const std::vector<double> &test) = 0;
+    virtual std::vector<double> BackwardProp(const std::vector<double> &output, const std::vector<double> &test) = 0;
 };
 #endif

@@ -6,9 +6,9 @@
 #include <memory>
 
 struct AbstractActivationFunction {
-    virtual std::vector<double> forward_prop(const std::vector<double> &input) = 0;
+    virtual std::vector<double> ForwardProp(const std::vector<double> &input) = 0;
 
-    virtual std::vector<double> backward_prop(const std::vector<double> &input, const std::vector<double> &dE) = 0;
+    virtual std::vector<double> BackwardProp(const std::vector<double> &input, const std::vector<double> &dE) = 0;
 
     virtual ~AbstractActivationFunction() {}
 

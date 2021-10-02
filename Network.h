@@ -23,13 +23,15 @@ struct Network {
     Network(size_t layers_, std::vector<size_t> size_layers, double speed_,
             std::vector<std::shared_ptr<AbstractActivationFunction>> func, std::shared_ptr<AbstractLossFunction> loss);
 
-    std::vector<double> Calc(std::vector<double> data);
+    std::vector<double> ForwardProp(std::vector<double> data);
 
-    void BackwardProp(const std::vector<double> &data, const std::vector<double> &test);
+    void BackwardProp(const std::vector<double> &test);
+
+    void Learn(const std::vector<double>& data, const std::vector<double>& test);
 
     void Step();
 
-    void Move_gradient(size_t num_lay, const std::vector<double> &lay, const std::vector<double> &output);
+    void MoveGradient(size_t num_lay, const std::vector<double> &lay, const std::vector<double> &output);
 };
 
 #endif

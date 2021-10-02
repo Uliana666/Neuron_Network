@@ -26,6 +26,12 @@ NodeTree.h
 Operations.h
 /home/uliana/Neuron_Network/Operations.h
 
+/home/uliana/Neuron_Network/Functions.cpp
+Functions.h
+/home/uliana/Neuron_Network/Functions.h
+cmath
+-
+
 /home/uliana/Neuron_Network/Functions.h
 AbstractActivationFunction.h
 /home/uliana/Neuron_Network/AbstractActivationFunction.h

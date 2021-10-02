@@ -11,11 +11,11 @@ Network::Network(size_t layers_, std::vector<size_t> size_layers, double speed_,
         LAYERS(layers_), sizes(std::move(size_layers)), speed(speed_), function(std::move(func)), lossFunction(loss) {
     std::mt19937 gen(777);
     std::uniform_real_distribution<> dis(-0.5, 0.5);
-    for (int i = 0; i < LAYERS - 1; ++i) {
+    for (size_t i = 0; i < LAYERS - 1; ++i) {
         w[i].resize(sizes[i], std::vector<double>(sizes[i + 1]));
         w_gradient[i].resize(sizes[i], std::vector<double>(sizes[i + 1], 0));
     }
-    for (int i = 0; i < LAYERS; ++i) {
+    for (size_t i = 0; i < LAYERS; ++i) {
         b[i].resize(sizes[i]);
         b_gradient[i].resize(sizes[i], 0);
     }
@@ -50,7 +50,7 @@ void Network::Step() {
 }
 
 std::vector<double> Network::ForwardProp(std::vector<double> data) {
-    for (int i = 0; i < LAYERS - 1; ++i) {
+    for (size_t i = 0; i < LAYERS - 1; ++i) {
         input[i] = data;
         output[i] = data = function[i]->ForwardProp(data);
         std::vector<double> in(sizes[i + 1], 0.);

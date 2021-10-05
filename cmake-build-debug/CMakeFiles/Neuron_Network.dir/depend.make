@@ -32,4 +32,5 @@ CMakeFiles/Neuron_Network.dir/main.cpp.o: \
  ../Network.h \
  ../NodeTree.h \
  ../Operations.h \
+ ../Tensor.hpp \
  ../main.cpp

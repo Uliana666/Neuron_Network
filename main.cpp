@@ -5,6 +5,7 @@
 #include "Network.h"
 #include "Functions.h"
 #include "ExpressionTree.h"
+#include "Tensor.hpp"
 
 const int IN = 2, OUT = 2;
 using namespace std;
@@ -21,6 +22,13 @@ Network net_ret() {
 }
 
 int main() {
+    Tensor<double, 2, 4> t(3);
+    Tensor<double, 4, 1> t2(8);
+    cin >> t;
+    cin >> t2;
+    auto kek = t.multy(t2);
+    cout << kek;
+    return 0;
     auto net = net_ret();
     std::ifstream test("test_circle");
     std::vector<double> v(IN), g(OUT);

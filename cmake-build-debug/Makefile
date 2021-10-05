@@ -201,30 +201,6 @@ Network.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Network.cpp.s
 .PHONY : Network.cpp.s
 
-NodeTree.o: NodeTree.cpp.o
-.PHONY : NodeTree.o
-
-# target to build an object file
-NodeTree.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/NodeTree.cpp.o
-.PHONY : NodeTree.cpp.o
-
-NodeTree.i: NodeTree.cpp.i
-.PHONY : NodeTree.i
-
-# target to preprocess a source file
-NodeTree.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/NodeTree.cpp.i
-.PHONY : NodeTree.cpp.i
-
-NodeTree.s: NodeTree.cpp.s
-.PHONY : NodeTree.s
-
-# target to generate assembly for a file
-NodeTree.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/NodeTree.cpp.s
-.PHONY : NodeTree.cpp.s
-
 Operations.o: Operations.cpp.o
 .PHONY : Operations.o
 
@@ -291,9 +267,6 @@ help:
 	@echo "... Network.o"
 	@echo "... Network.i"
 	@echo "... Network.s"
-	@echo "... NodeTree.o"
-	@echo "... NodeTree.i"
-	@echo "... NodeTree.s"
 	@echo "... Operations.o"
 	@echo "... Operations.i"
 	@echo "... Operations.s"

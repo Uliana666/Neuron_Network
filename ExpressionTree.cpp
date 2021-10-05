@@ -1,48 +1,48 @@
 #include "ExpressionTree.h"
 #include "Operations.h"
 
-ExpressionTree::ExpressionTree(double x) : root(new Val(x)) {}
+ExpressionTree::ExpressionTree(double x) : root(std::make_shared<Val>(x)) {}
 
-ExpressionTree::ExpressionTree(NodeTree *root) : root(root) {}
+ExpressionTree::ExpressionTree(std::shared_ptr<NodeTree> root) : root(root) {}
 
 ExpressionTree ExpressionTree::operator+(const ExpressionTree &b) {
-    return ExpressionTree(new Sum(root, b.root));
+    return ExpressionTree(std::make_shared<Sum>(root, b.root));
 }
 
 ExpressionTree ExpressionTree::operator-(const ExpressionTree &b) {
-    return ExpressionTree(new Sub(root, b.root));
+    return ExpressionTree(std::make_shared<Sub>(root, b.root));
 }
 
 ExpressionTree ExpressionTree::operator*(const ExpressionTree &b) {
-    return ExpressionTree(new Mul(root, b.root));
+    return ExpressionTree(std::make_shared<Mul>(root, b.root));
 }
 
 ExpressionTree ExpressionTree::operator/(const ExpressionTree &b) {
-    return ExpressionTree(new Del(root, b.root));
+    return ExpressionTree(std::make_shared<Del>(root, b.root));
 }
 
 ExpressionTree ExpressionTree::exp() {
-    return ExpressionTree(new Exp(root));
+    return ExpressionTree(std::make_shared<Exp>(root));
 }
 
 ExpressionTree ExpressionTree::operator-() {
-    return ExpressionTree(new unSub(root));
+    return ExpressionTree(std::make_shared<unSub>(root));
 }
 
 void ExpressionTree::operator+=(const ExpressionTree &b) {
-    root = new Sum(root, b.root);
+    root = std::make_shared<Sum>(root, b.root);
 }
 
 void ExpressionTree::operator-=(const ExpressionTree &b) {
-    root = new Sub(root, b.root);
+    root = std::make_shared<Sub>(root, b.root);
 }
 
 void ExpressionTree::operator*=(const ExpressionTree &b) {
-    root = new Mul(root, b.root);
+    root = std::make_shared<Mul>(root, b.root);
 }
 
 void ExpressionTree::operator/=(const ExpressionTree &b) {
-    root = new Del(root, b.root);
+    root = std::make_shared<Del>(root, b.root);
 }
 
 

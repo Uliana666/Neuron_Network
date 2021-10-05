@@ -2,6 +2,7 @@
 #define NEURON_NETWORK_OPERATIONS_H
 
 #include "NodeTree.h"
+#include <memory>
 
 struct Val : NodeTree {
     double x;
@@ -12,49 +13,49 @@ struct Val : NodeTree {
 };
 
 struct Sum : NodeTree {
-    NodeTree *child1, *child2;
+    std::shared_ptr<NodeTree> child1, child2;
 
-    Sum(NodeTree *a, NodeTree *b);
+    Sum(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b);
 
     double Calc() override;
 };
 
 struct Sub : NodeTree {
-    NodeTree *child1, *child2;
+    std::shared_ptr<NodeTree> child1, child2;
 
-    Sub(NodeTree *a, NodeTree *b);
+    Sub(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b);
 
     double Calc() override;
 };
 
 struct Mul : NodeTree {
-    NodeTree *child1, *child2;
+    std::shared_ptr<NodeTree> child1, child2;
 
-    Mul(NodeTree *a, NodeTree *b);
+    Mul(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b);
 
     double Calc() override;
 };
 
 struct Del : NodeTree {
-    NodeTree *child1, *child2;
+    std::shared_ptr<NodeTree> child1, child2;
 
-    Del(NodeTree *a, NodeTree *b);
+    Del(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b);
 
     double Calc() override;
 };
 
 struct unSub : NodeTree {
-    NodeTree *child;
+    std::shared_ptr<NodeTree> child;
 
-    unSub(NodeTree *a);
+    unSub(std::shared_ptr<NodeTree> a);
 
     double Calc() override;
 };
 
 struct Exp : NodeTree {
-    NodeTree *child;
+    std::shared_ptr<NodeTree> child;
 
-    Exp(NodeTree *a);
+    Exp(std::shared_ptr<NodeTree> a);
 
     double Calc() override;
 };

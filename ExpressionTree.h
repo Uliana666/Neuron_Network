@@ -3,13 +3,14 @@
 
 #include "NodeTree.h"
 #include "Operations.h"
+#include <memory>
 
 struct ExpressionTree {
-    NodeTree *root;
+    std::shared_ptr<NodeTree> root;
 
     ExpressionTree(double x);
 
-    ExpressionTree(NodeTree *root);
+    ExpressionTree(std::shared_ptr<NodeTree> root);
 
     ExpressionTree operator+(const ExpressionTree &b);
 

@@ -20,9 +20,6 @@ CMakeFiles/Neuron_Network.dir/Network.cpp.o: \
  ../Network.h \
  ../NodeTree.h \
  ../Operations.h
-CMakeFiles/Neuron_Network.dir/NodeTree.cpp.o: \
- ../NodeTree.cpp \
- ../NodeTree.h
 CMakeFiles/Neuron_Network.dir/Operations.cpp.o: \
  ../NodeTree.h \
  ../Operations.cpp \

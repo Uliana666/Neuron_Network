@@ -81,12 +81,12 @@ clean: CMakeFiles/Neuron_Network.dir/clean
 CMakeFiles/Neuron_Network.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target Neuron_Network"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target Neuron_Network"
 .PHONY : CMakeFiles/Neuron_Network.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Neuron_Network.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Neuron_Network.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Neuron_Network.dir/rule

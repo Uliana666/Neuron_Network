@@ -4,6 +4,8 @@
 
 struct NodeTree {
     virtual double Calc() = 0;
+
+    virtual ~NodeTree() {}
 };
 
 

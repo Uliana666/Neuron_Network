@@ -108,9 +108,6 @@
 		<Unit filename="/home/uliana/Neuron_Network/Network.h">
 			<Option target="Neuron_Network"/>
 		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/NodeTree.cpp">
-			<Option target="Neuron_Network"/>
-		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/NodeTree.h">
 			<Option target="Neuron_Network"/>
 		</Unit>

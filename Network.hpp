@@ -29,13 +29,13 @@ struct Network {
     Layer<4, 4> lay2;
     Layer<4, 2> lay3;
 
-   /* Tensor<double, 1, 2> ForwardProp(Tensor<double, 1, 2> data) {
+   Tensor<double, 1, 2> ForwardProp(Tensor<double, 1, 2> data) {
         ActivateInline(data, tgnt);
         auto data1 = Activate(lay1.calc(data), tgnt);
         auto data2 = Activate(lay2.calc(data1), tgnt);
-        auto data3 = Activate(lay3.calc(data2), tgnt);
+        auto data3 = Activate<1>(lay3.calc(data2), sfmx);
         return data3;
-    }*/
+    }
 
     //void BackwardProp(const std::vector<double> &test);
 

@@ -38,8 +38,8 @@ struct Softmax {
     Tensor<double, len> operator()(Tensor<double, len> x) {
         auto res = x;
         double sm = 0;
-        for (auto e: res) sm += exp(e);
-        for (auto& e: res) e = exp(e) / sm;
+        for (auto e: res.data) sm += exp(e);
+        for (auto& e: res.data) e = exp(e) / sm;
         return res;
     }
 };

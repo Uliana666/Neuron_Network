@@ -12,10 +12,7 @@ const size_t IN = 2, OUT = 2;
 using namespace std;
 
 int main() {
-    //Network net;
-    Tensor<double, 5> kek(4);
-    ActivateInline<0>(kek, sigm);
-    cout << kek;
+    Network net;
     return 0;
     /*std::ifstream test("test_circle");
     std::vector<double> v(IN), g(OUT);

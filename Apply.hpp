@@ -10,10 +10,9 @@ constexpr void ActivateInline(TArgument &arg, TFunction &&function) {
     else for (size_t i = 0; i < arg.size(); ++i) { ActivateInline<deep>(arg[i], function); }
 }
 
-template<class TFunction, CTensor TArgument, size_t deep>
+template<size_t deep = 0, class TFunction, CTensor TArgument>
 constexpr auto Activate(TArgument arg, TFunction &&function) {
     ActivateInline<deep>(arg, function);
     return arg;
 }
-
 #endif

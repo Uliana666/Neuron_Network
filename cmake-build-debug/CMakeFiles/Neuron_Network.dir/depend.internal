@@ -7,29 +7,17 @@ CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o
  /home/uliana/Neuron_Network/NodeTree.h
  /home/uliana/Neuron_Network/Operations.h
 CMakeFiles/Neuron_Network.dir/Functions.cpp.o
- /home/uliana/Neuron_Network/AbstractActivationFunction.h
- /home/uliana/Neuron_Network/AbstractLossFunction.h
  /home/uliana/Neuron_Network/Functions.cpp
- /home/uliana/Neuron_Network/Functions.h
-CMakeFiles/Neuron_Network.dir/Network.cpp.o
- /home/uliana/Neuron_Network/AbstractActivationFunction.h
- /home/uliana/Neuron_Network/AbstractLossFunction.h
- /home/uliana/Neuron_Network/ExpressionTree.h
- /home/uliana/Neuron_Network/Functions.h
- /home/uliana/Neuron_Network/Network.cpp
- /home/uliana/Neuron_Network/Network.h
- /home/uliana/Neuron_Network/NodeTree.h
- /home/uliana/Neuron_Network/Operations.h
 CMakeFiles/Neuron_Network.dir/Operations.cpp.o
  /home/uliana/Neuron_Network/NodeTree.h
  /home/uliana/Neuron_Network/Operations.cpp
  /home/uliana/Neuron_Network/Operations.h
 CMakeFiles/Neuron_Network.dir/main.cpp.o
- /home/uliana/Neuron_Network/AbstractActivationFunction.h
- /home/uliana/Neuron_Network/AbstractLossFunction.h
+ /home/uliana/Neuron_Network/Apply.hpp
  /home/uliana/Neuron_Network/ExpressionTree.h
- /home/uliana/Neuron_Network/Functions.h
- /home/uliana/Neuron_Network/Network.h
+ /home/uliana/Neuron_Network/Functions.hpp
+ /home/uliana/Neuron_Network/Layer.hpp
+ /home/uliana/Neuron_Network/Network.hpp
  /home/uliana/Neuron_Network/NodeTree.h
  /home/uliana/Neuron_Network/Operations.h
  /home/uliana/Neuron_Network/Tensor.hpp

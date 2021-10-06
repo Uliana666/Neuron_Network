@@ -6,19 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/uliana/Neuron_Network/AbstractActivationFunction.h
-iostream
--
-vector
--
-memory
--
-
-/home/uliana/Neuron_Network/AbstractLossFunction.h
-iostream
--
-vector
--
+/home/uliana/Neuron_Network/Apply.hpp
+Functions.hpp
+/home/uliana/Neuron_Network/Functions.hpp
 
 /home/uliana/Neuron_Network/ExpressionTree.h
 NodeTree.h
@@ -28,27 +18,43 @@ Operations.h
 memory
 -
 
-/home/uliana/Neuron_Network/Functions.h
-AbstractActivationFunction.h
-/home/uliana/Neuron_Network/AbstractActivationFunction.h
-AbstractLossFunction.h
-/home/uliana/Neuron_Network/AbstractLossFunction.h
+/home/uliana/Neuron_Network/Functions.hpp
 iostream
 -
 vector
 -
 memory
 -
+Tensor.hpp
+/home/uliana/Neuron_Network/Tensor.hpp
 
-/home/uliana/Neuron_Network/Network.h
-AbstractActivationFunction.h
-/home/uliana/Neuron_Network/AbstractActivationFunction.h
-AbstractLossFunction.h
-/home/uliana/Neuron_Network/AbstractLossFunction.h
+/home/uliana/Neuron_Network/Layer.hpp
+Tensor.hpp
+/home/uliana/Neuron_Network/Tensor.hpp
+Apply.hpp
+/home/uliana/Neuron_Network/Apply.hpp
+
+/home/uliana/Neuron_Network/Network.hpp
 random
 -
 memory
 -
+Layer.hpp
+/home/uliana/Neuron_Network/Layer.hpp
+array
+-
+Functions.hpp
+/home/uliana/Neuron_Network/Functions.hpp
+iostream
+-
+random
+-
+utility
+-
+memory
+-
+ExpressionTree.h
+/home/uliana/Neuron_Network/ExpressionTree.h
 
 /home/uliana/Neuron_Network/NodeTree.h
 
@@ -65,6 +71,8 @@ array
 -
 cmath
 -
+random
+-
 
 /home/uliana/Neuron_Network/main.cpp
 iostream
@@ -73,12 +81,14 @@ bits/stdc++.h
 -
 memory
 -
-Network.h
-/home/uliana/Neuron_Network/Network.h
-Functions.h
-/home/uliana/Neuron_Network/Functions.h
+cmath
+-
+Network.hpp
+/home/uliana/Neuron_Network/Network.hpp
+Functions.hpp
+/home/uliana/Neuron_Network/Functions.hpp
 ExpressionTree.h
 /home/uliana/Neuron_Network/ExpressionTree.h
-Tensor.hpp
-/home/uliana/Neuron_Network/Tensor.hpp
+Apply.hpp
+/home/uliana/Neuron_Network/Apply.hpp
 

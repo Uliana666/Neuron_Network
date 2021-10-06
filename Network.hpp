@@ -1,29 +1,52 @@
-#include "Network.h"
-#include "Functions.h"
+#ifndef NEURON_NETWORK_NETWORK_H
+#define NEURON_NETWORK_NETWORK_H
+
+#include <random>
+#include <memory>
+#include "Layer.hpp"
+#include <array>
+#include "Functions.hpp"
 #include <iostream>
 #include <random>
 #include <utility>
+#include <memory>
 #include "ExpressionTree.h"
 
-Network::Network(size_t layers_, std::vector<size_t> size_layers, double speed_,
-                 std::vector<std::shared_ptr<AbstractActivationFunction>> func,
-                 std::shared_ptr<AbstractLossFunction> loss) :
-        LAYERS(layers_), sizes(std::move(size_layers)), speed(speed_), function(std::move(func)), lossFunction(loss) {
-    std::mt19937 gen(777);
-    std::uniform_real_distribution<> dis(-0.5, 0.5);
-    for (size_t i = 0; i < LAYERS - 1; ++i) {
-        w[i].resize(sizes[i], std::vector<double>(sizes[i + 1]));
-        w_gradient[i].resize(sizes[i], std::vector<double>(sizes[i + 1], 0));
-    }
-    for (size_t i = 0; i < LAYERS; ++i) {
-        b[i].resize(sizes[i]);
-        b_gradient[i].resize(sizes[i], 0);
-    }
-    for (auto &i: w) for (auto &j: i) for (double &k: j) k = dis(gen);
-    for (auto &i: b) for (double &j: i) j = dis(gen);
+using namespace std;
+Sigmoid sigm;
+Softmax sfmx;
+Tangh tgnt;
+LinearFunction linr;
+ReLu relu;
+CrossEntropy crs_e;
+ErrorSquared er_sq;
 
-}
 
+struct Network {
+    int cnt = 0;
+    double speed = 0.5;
+    Layer<2, 4> lay1;
+    Layer<4, 4> lay2;
+    Layer<4, 2> lay3;
+
+   /* Tensor<double, 1, 2> ForwardProp(Tensor<double, 1, 2> data) {
+        ActivateInline(data, tgnt);
+        auto data1 = Activate(lay1.calc(data), tgnt);
+        auto data2 = Activate(lay2.calc(data1), tgnt);
+        auto data3 = Activate(lay3.calc(data2), tgnt);
+        return data3;
+    }*/
+
+    //void BackwardProp(const std::vector<double> &test);
+
+    //void Learn(const std::vector<double> &data, const std::vector<double> &test);
+
+    //void Step();
+
+    //void MoveGradient(size_t num_lay, const std::vector<double> &lay, const std::vector<double> &output);
+};
+
+/*
 void Network::MoveGradient(size_t num_lay, const std::vector<double> &lay, const std::vector<double> &output) {
     ++cnt;
     for (size_t j = 0; j < sizes[num_lay]; ++j)
@@ -49,21 +72,6 @@ void Network::Step() {
     cnt = 0;
 }
 
-std::vector<double> Network::ForwardProp(std::vector<double> data) {
-    for (size_t i = 0; i < LAYERS - 1; ++i) {
-        input[i] = data;
-        output[i] = data = function[i]->ForwardProp(data);
-        std::vector<double> in(sizes[i + 1], 0.);
-        for (size_t j = 0; j < data.size(); ++j)
-            for (size_t k = 0; k < sizes[i + 1]; ++k) {
-                in[k] += data[j] * w[i][j][k];
-            }
-        for (size_t j = 0; j < sizes[i + 1]; ++j) in[j] += b[i + 1][j];
-        data = in;
-    }
-    input[LAYERS - 1] = data;
-    return (output[LAYERS - 1] = function[LAYERS - 1]->ForwardProp(data));
-}
 
 void Network::Learn(const std::vector<double> &data, const std::vector<double> &test) {
     ForwardProp(data);
@@ -82,3 +90,6 @@ void Network::BackwardProp(const std::vector<double> &test) {
         lay = lay2;
     }
 }
+
+*/
+#endif

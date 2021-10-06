@@ -177,30 +177,6 @@ Functions.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Functions.cpp.s
 .PHONY : Functions.cpp.s
 
-Network.o: Network.cpp.o
-.PHONY : Network.o
-
-# target to build an object file
-Network.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Network.cpp.o
-.PHONY : Network.cpp.o
-
-Network.i: Network.cpp.i
-.PHONY : Network.i
-
-# target to preprocess a source file
-Network.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Network.cpp.i
-.PHONY : Network.cpp.i
-
-Network.s: Network.cpp.s
-.PHONY : Network.s
-
-# target to generate assembly for a file
-Network.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Network.cpp.s
-.PHONY : Network.cpp.s
-
 Operations.o: Operations.cpp.o
 .PHONY : Operations.o
 
@@ -264,9 +240,6 @@ help:
 	@echo "... Functions.o"
 	@echo "... Functions.i"
 	@echo "... Functions.s"
-	@echo "... Network.o"
-	@echo "... Network.i"
-	@echo "... Network.s"
 	@echo "... Operations.o"
 	@echo "... Operations.i"
 	@echo "... Operations.s"

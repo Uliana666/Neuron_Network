@@ -1,9 +1,16 @@
+#ifndef NEURON_NETWORK_TENSOR_HPP
+#define NEURON_NETWORK_TENSOR_HPP
+
 #include <iostream>
 #include <array>
 #include <cmath>
+#include <random>
 
-std::mt19937 gen(777);
-std::uniform_real_distribution<> dis(-0.5, 0.5);
+namespace rnd {
+    std::mt19937 gen{777};
+    std::uniform_real_distribution<> dis{-0.5, 0.5};
+}
+
 template<class T, size_t... sizes>
 struct Tensor {
 };
@@ -11,10 +18,11 @@ struct Tensor {
 template<class T>
 struct Tensor<T> {
     T data;
+    static constexpr size_t dim = 0;
 
-    Tensor<T>() : data(dis(gen)) {}
+    Tensor() : data(rnd::dis(rnd::gen)) {}
 
-    Tensor<T>(T x) : data(x) {}
+    Tensor(T x) : data(x) {}
 
     void fill(T x = 0) {
         data = x;
@@ -91,6 +99,23 @@ struct Tensor<T> {
     Tensor<T> operator/(const Tensor<T> &t) {
         return Tensor<T>(data / t.data);
     }
+
+    Tensor<T> operator=(T x) {
+        data = x;
+        return *this;
+    }
+
+    operator T() {
+        return data;
+    }
+
+    size_t dimens() const {
+        return 0;
+    }
+
+    size_t size() const {
+        return 0;
+    }
 };
 
 template<class T>
@@ -108,6 +133,9 @@ std::istream &operator>>(std::istream &in, Tensor<T> &t) {
 template<class T, size_t len, size_t... sizes>
 struct Tensor<T, len, sizes...> {
     Tensor<T, sizes...> data[len];
+    static constexpr size_t n = len;
+    static constexpr size_t dim = sizeof...(sizes) + 1;
+
 
     Tensor(T x) {
         for (auto &e: data) e = Tensor<T, sizes...>(x);
@@ -221,6 +249,19 @@ struct Tensor<T, len, sizes...> {
                 }
         return res;
     }
+
+    size_t size() const {
+        return len;
+    }
+
+    size_t dimens() const {
+        return (sizeof...(sizes) + 1);
+    }
+    //template<size_t from, size_t to>
+    /*Tensor<T, to - from, sizes...> &subtensor() {
+        static_assert(from < to && to <= n);
+        return *reinterpret_cast<Tensor<T, to - from, sizes...> *>(&data[from]);
+    }*/
 };
 
 template<class T, size_t len, size_t... sizes>
@@ -238,24 +279,21 @@ std::istream &operator>>(std::istream &in, Tensor<T, len, sizes...> &t) {
 }
 
 template<class T>
-Tensor<T> exp(Tensor<T> &t) {
-    return Tensor<T>(exp(t.data));
-}
+struct IsTensor {
+    static constexpr bool value = false;
+};
+
+template<class T, size_t... dims>
+struct IsTensor<Tensor<T, dims...>> {
+    static constexpr bool value = true;
+};
+
+template<class T, size_t... dims>
+struct IsTensor<const Tensor<T, dims...>> {
+    static constexpr bool value = true;
+};
 
 template<class T>
-Tensor<T> exp_equal(Tensor<T> &t) {
-    return Tensor<T>(exp(t.data));
-}
-
-template<class T, size_t len, size_t... sizes>
-Tensor<T, len, sizes...> exp_equal(Tensor<T, len, sizes...> &t) {
-    for (auto &e: t.data) exp_equal(e);
-    return *t;
-}
-
-template<class T, size_t len, size_t... sizes>
-Tensor<T, len, sizes...> exp(Tensor<T, len, sizes...> &t) {
-    auto N = t;
-    return exp_equal(N);
-}
+concept CTensor = IsTensor<T>::value;
+#endif
 

@@ -7,29 +7,17 @@ CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o: \
  ../NodeTree.h \
  ../Operations.h
 CMakeFiles/Neuron_Network.dir/Functions.cpp.o: \
- ../AbstractActivationFunction.h \
- ../AbstractLossFunction.h \
- ../Functions.cpp \
- ../Functions.h
-CMakeFiles/Neuron_Network.dir/Network.cpp.o: \
- ../AbstractActivationFunction.h \
- ../AbstractLossFunction.h \
- ../ExpressionTree.h \
- ../Functions.h \
- ../Network.cpp \
- ../Network.h \
- ../NodeTree.h \
- ../Operations.h
+ ../Functions.cpp
 CMakeFiles/Neuron_Network.dir/Operations.cpp.o: \
  ../NodeTree.h \
  ../Operations.cpp \
  ../Operations.h
 CMakeFiles/Neuron_Network.dir/main.cpp.o: \
- ../AbstractActivationFunction.h \
- ../AbstractLossFunction.h \
+ ../Apply.hpp \
  ../ExpressionTree.h \
- ../Functions.h \
- ../Network.h \
+ ../Functions.hpp \
+ ../Layer.hpp \
+ ../Network.hpp \
  ../NodeTree.h \
  ../Operations.h \
  ../Tensor.hpp \

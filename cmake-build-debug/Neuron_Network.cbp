@@ -45,13 +45,14 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/uliana/Neuron_Network/inc"/>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j12 -f &quot;/home/uliana/Neuron_Network/cmake-build-debug/Makefile&quot;  VERBOSE=1 Neuron_Network"/>
@@ -68,13 +69,14 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/uliana/Neuron_Network/inc"/>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j12 -f &quot;/home/uliana/Neuron_Network/cmake-build-debug/Makefile&quot;  VERBOSE=1 Neuron_Network/fast"/>
@@ -84,10 +86,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/uliana/Neuron_Network/AbstractActivationFunction.h">
-			<Option target="Neuron_Network"/>
-		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/AbstractLossFunction.h">
+		<Unit filename="/home/uliana/Neuron_Network/Apply.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/ExpressionTree.cpp">
@@ -99,13 +98,13 @@
 		<Unit filename="/home/uliana/Neuron_Network/Functions.cpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/Functions.h">
+		<Unit filename="/home/uliana/Neuron_Network/Functions.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/Network.cpp">
+		<Unit filename="/home/uliana/Neuron_Network/Layer.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/Network.h">
+		<Unit filename="/home/uliana/Neuron_Network/Network.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/NodeTree.h">

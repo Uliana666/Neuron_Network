@@ -31,7 +31,7 @@ ErrorSquaredBack er_sqb;
 
 template<size_t deep>
 struct Network {
-    double speed = 0.001;
+    double speed = 0.00003;
     Tensor<double, deep, 2> out_data;
     Tensor<double, deep, 4> in_lay1, out_lay1, in_lay2, out_lay2;
     Tensor<double, deep, 2> in_lay3, out_lay3;
@@ -54,15 +54,11 @@ struct Network {
         auto data1 = Activate(in_lay1, tgnt);
         out_lay1 = data1;
         in_lay2 = lay2.calc(data1);
-        //cout << "in_lay2 " << in_lay2;
         auto data2 = Activate(in_lay2, tgnt);
         out_lay2 = data2;
-        //cout << "out_lay2 " << out_lay2;
         in_lay3 = lay3.calc(data2);
-        //cout << "in " << in_lay3 << std::endl;
         auto data3 = Activate<1>(in_lay3, sfmx);
         out_lay3 = data3;
-        //std::cout << "!" << data3 << std::endl;
         return data3;
     }
 

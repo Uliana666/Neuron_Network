@@ -8,29 +8,29 @@
 template<size_t in, size_t out>
 struct Layer {
     Tensor<double, in, out> w, w_gradient{0};
-    Tensor<double, 1, out> b, b_gradient{0};
+    Tensor<double, out> b, b_gradient{0};
     int cnt = 0;
     double speed;
 
     Layer(double x) : speed(x) {}
 
-    template<class T>
-    Tensor<T, 1, out> calc(const Tensor<T, 1, in> &data) {
+    template<class T, size_t deep>
+    Tensor<T, deep, out> calc(const Tensor<T, deep, in> &data) {
         auto res = multy(data, w);
-        res += b;
+        for(auto& e: res.data) e += b;
         return res;
     }
 
-    template<class T>
-    Tensor<T, 1, in> calcb(const Tensor<T, 1, out> &data) {
+    template<class T, size_t deep>
+    Tensor<T, deep, in> calcb(const Tensor<T, deep, out> &data) {
         return multy2(data, w);
     }
 
-    template<class T>
-    void MoveGradient(const Tensor<T, 1, out> &lay, const Tensor<T, 1, in> &output) {
+    template<class T, size_t deep>
+    void MoveGradient(const Tensor<T, deep, out> &lay, const Tensor<T, deep, in> &output) {
         ++cnt;
         w_gradient += multy1(output, lay);
-        b_gradient += lay;
+        for(auto& e: lay.data) b_gradient += e;
     }
 
     void Step() {

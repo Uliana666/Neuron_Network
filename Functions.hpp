@@ -35,7 +35,7 @@ struct ReLu {
 
 struct Softmax {
     template<size_t len>
-    Tensor<double, len> operator()(const Tensor<double, len>& x) {
+    Tensor<double, len> operator()(const Tensor<double, len> &x) {
         auto res = x;
         double sm = 0;
         for (auto e: res.data) sm += exp(e);
@@ -101,7 +101,7 @@ struct ReLuBack {
     }
 };
 
-struct SoftmaxBack {
+/*struct SoftmaxBack {
     template<size_t len>
     Tensor<double, 1, len> operator()(Tensor<double, 1, len> dE, Tensor<double, 1, len> x) {
         Tensor<double, 1, len> res(0);
@@ -117,14 +117,34 @@ struct SoftmaxBack {
         }
         return res;
     }
+};*/
+struct SoftmaxBack {
+    template<CTensor T>
+    void operator()(const T &dE, const T &x, T &res) {
+        if constexpr(T::dim == 1) {
+            double sm = 0;
+            for (auto &e: x.data) sm += exp(e);
+            for (size_t i = 0; i < T::n; ++i) {
+                for (size_t k = 0; k < T::n; ++k) {
+                    if (i != k)
+                        res[i] += -dE[k] * exp(x[k]) * exp(x[i]) / sm / sm;
+                    else
+                        res[i] += dE[k] * exp(x[k]) * (sm - exp(x[k])) / sm / sm;
+                }
+            }
+        } else {
+            for (size_t i = 0; i < T::n; ++i) (*this)(dE[i], x[i], res[i]);
+        }
+    }
 };
-
 
 struct CrossEntropyBack {
     template<CTensor T>
     void operator()(T &out, const T &test) {
-        if constexpr(T::dim == 0) out = -test.data / out.data;
-        else
+        if constexpr(T::dim == 0) {
+            if (test.data > 0.) out = -test.data / out.data;
+            else out = 0;
+        } else
             for (size_t i = 0; i < T::n; ++i)
                 (*this)(out[i], test[i]);
     }

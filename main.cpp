@@ -9,16 +9,23 @@
 #include "Apply.hpp"
 
 using namespace std;
+CrossEntropyBack crs_eb0;
 
 int main() {
-    const size_t buk = 64;
+    const size_t buk = 1;
     Network<buk> net;
     std::ifstream test("test_circle");
     Tensor<double, buk, 2> v, g;
-    for (int i = 0; i < 50000; ++i) {
+    double kek = 0;
+    for (int i = 0; i < 1000000 / buk; ++i) {
         for (int j = 0; j < buk; ++j) test >> v[j] >> g[j];
-        net.Learn(v, g);
-        net.Step();
+        std::cout << v << '\n' << g;
+        net.Learn(v, g, kek);
+        if ((i + 1) % 20 == 0) {
+            std::cout << kek << std::endl;
+            kek = 0;
+            net.Step();
+        }
     }
     std::cout << "GO" << std::endl;
     while (true) {

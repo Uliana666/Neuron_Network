@@ -17,7 +17,7 @@ struct Layer {
     template<class T, size_t deep>
     Tensor<T, deep, out> calc(const Tensor<T, deep, in> &data) {
         auto res = multy(data, w);
-        for(auto& e: res.data) e += b;
+        for (auto &e: res.data) e += b;
         return res;
     }
 
@@ -30,11 +30,12 @@ struct Layer {
     void MoveGradient(const Tensor<T, deep, out> &lay, const Tensor<T, deep, in> &output) {
         ++cnt;
         w_gradient += multy1(output, lay);
-        for(auto& e: lay.data) b_gradient += e;
+        for (auto &e: lay.data) b_gradient += e;
     }
 
     void Step() {
         if (!cnt) return;
+        //std::cout << w_gradient;
         w -= (w_gradient *= speed / cnt);
         b -= (b_gradient *= speed / cnt);
         b_gradient.fill();

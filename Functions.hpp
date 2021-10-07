@@ -101,23 +101,6 @@ struct ReLuBack {
     }
 };
 
-/*struct SoftmaxBack {
-    template<size_t len>
-    Tensor<double, 1, len> operator()(Tensor<double, 1, len> dE, Tensor<double, 1, len> x) {
-        Tensor<double, 1, len> res(0);
-        double sm = 0;
-        for (auto &e: x[0].data) sm += exp(e);
-        for (size_t i = 0; i < len; ++i) {
-            for (size_t k = 0; k < len; ++k) {
-                if (i != k)
-                    res[0][i] += -dE[0][k] * exp(x[0][k]) * exp(x[0][i]) / sm / sm;
-                else
-                    res[0][i] += dE[0][k] * exp(x[0][k]) * (sm - exp(x[0][k])) / sm / sm;
-            }
-        }
-        return res;
-    }
-};*/
 struct SoftmaxBack {
     template<CTensor T>
     void operator()(const T &dE, const T &x, T &res) {

@@ -109,6 +109,10 @@ struct Tensor<T> {
         return data;
     }
 
+    operator T() const {
+        return data;
+    }
+
     size_t dimens() const {
         return 0;
     }
@@ -191,6 +195,10 @@ struct Tensor<T, len, sizes...> {
         return data[i];
     }
 
+    const Tensor<T, sizes...> &operator[](size_t i) const {
+        return data[i];
+    }
+
     Tensor<T, len, sizes...> operator+=(const Tensor<T, len, sizes...> &t) {
         for (size_t i = 0; i < len; ++i) {
             data[i] += t.data[i];
@@ -239,17 +247,6 @@ struct Tensor<T, len, sizes...> {
         return (N /= t);
     }
 
-    template<size_t len0, size_t len1>
-    Tensor<T, len, len1> multy(Tensor<T, len0, len1> &t) {
-        Tensor<T, len, len1> res(0);
-        for (size_t i = 0; i < len; ++i)
-            for (size_t k = 0; k < len0; ++k)
-                for (size_t j = 0; j < len1; ++j) {
-                    res[i][j] += (*this)[i][k] * (t[k][j]);
-                }
-        return res;
-    }
-
     size_t size() const {
         return len;
     }
@@ -257,11 +254,12 @@ struct Tensor<T, len, sizes...> {
     size_t dimens() const {
         return (sizeof...(sizes) + 1);
     }
-    //template<size_t from, size_t to>
-    /*Tensor<T, to - from, sizes...> &subtensor() {
+
+    template<size_t from, size_t to>
+    Tensor<T, to - from, sizes...> &subtensor() {
         static_assert(from < to && to <= n);
         return *reinterpret_cast<Tensor<T, to - from, sizes...> *>(&data[from]);
-    }*/
+    }
 };
 
 template<class T, size_t len, size_t... sizes>
@@ -295,5 +293,48 @@ struct IsTensor<const Tensor<T, dims...>> {
 
 template<class T>
 concept CTensor = IsTensor<T>::value;
+
+template<size_t n, size_t m, class T>
+Tensor<T, m, n> Transposition(const Tensor<T, n, m> &t) {
+    Tensor<T, m, n> res(0);
+    for (size_t i = 0; i < n; ++i)
+        for (size_t j = 0; j < m; ++j)
+            res[j][i] = t[i][j];
+    return res;
+}
+
+template<class T, size_t len, size_t len0, size_t len1>
+Tensor<T, len, len1> multy(const Tensor<T, len, len0> &t0, const Tensor<T, len0, len1> &t1) {
+    Tensor<T, len, len1> res(0);
+    for (size_t i = 0; i < len; ++i)
+        for (size_t k = 0; k < len0; ++k)
+            for (size_t j = 0; j < len1; ++j) {
+                res[i][j] += t0[i][k] * t1[k][j];
+            }
+    return res;
+}
+
+template<class T, size_t len, size_t len0, size_t len1>
+Tensor<T, len, len1> multy1(const Tensor<T, len0, len> &t0, const Tensor<T, len0, len1> &t1) {
+    Tensor<T, len, len1> res(0);
+    for (size_t i = 0; i < len; ++i)
+        for (size_t k = 0; k < len0; ++k)
+            for (size_t j = 0; j < len1; ++j) {
+                res[i][j] += t0[k][i] * t1[k][j];
+            }
+    return res;
+}
+
+template<class T, size_t len, size_t len0, size_t len1>
+Tensor<T, len, len1> multy2(const Tensor<T, len, len0> &t0, const Tensor<T, len1, len0> &t1) {
+    Tensor<T, len, len1> res(0);
+    for (size_t i = 0; i < len; ++i)
+        for (size_t k = 0; k < len0; ++k)
+            for (size_t j = 0; j < len1; ++j) {
+                res[i][j] += t0[i][k] * t1[j][k];
+            }
+    return res;
+}
+
 #endif
 

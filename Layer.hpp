@@ -15,37 +15,28 @@ struct Layer {
     Layer(double x) : speed(x) {}
 
     template<class T>
-    Tensor<T, 1, out> calc(Tensor<T, 1, in> data) {
-        Tensor<T, 1, out> res = b;
-        res += data.multy(w);
+    Tensor<T, 1, out> calc(const Tensor<T, 1, in> &data) {
+        auto res = multy(data, w);
+        res += b;
         return res;
     }
 
     template<class T>
-    Tensor<T, 1, in> calcb(Tensor<T, 1, out> data) {
-        Tensor<T, 1, in> res(0);
-        for (int j = 0; j < in; ++j)
-            for (int k = 0; k < out; ++k)
-                res[0][j] += data[0][k] * w[j][k];
-        return res;
+    Tensor<T, 1, in> calcb(const Tensor<T, 1, out> &data) {
+        return multy2(data, w);
     }
 
     template<class T>
-    void MoveGradient(Tensor<T, 1, out> &lay, Tensor<T, 1, in> &output) {
+    void MoveGradient(const Tensor<T, 1, out> &lay, const Tensor<T, 1, in> &output) {
         ++cnt;
-        for (size_t j = 0; j < in; ++j) {
-            for (size_t k = 0; k < out; ++k)
-                w_gradient[j][k] += lay[0][k] * output[0][j];
-        }
+        w_gradient += multy1(output, lay);
         b_gradient += lay;
     }
 
     void Step() {
         if (!cnt) return;
-        w_gradient *= speed / cnt;
-        b_gradient *= speed / cnt;
-        w -= w_gradient;
-        b -= b_gradient;
+        w -= (w_gradient *= speed / cnt);
+        b -= (b_gradient *= speed / cnt);
         b_gradient.fill();
         w_gradient.fill();
         cnt = 0;

@@ -6,8 +6,6 @@ CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o: \
  ../ExpressionTree.h \
  ../NodeTree.h \
  ../Operations.h
-CMakeFiles/Neuron_Network.dir/Functions.cpp.o: \
- ../Functions.cpp
 CMakeFiles/Neuron_Network.dir/Operations.cpp.o: \
  ../NodeTree.h \
  ../Operations.cpp \

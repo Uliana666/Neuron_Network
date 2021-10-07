@@ -35,7 +35,7 @@ struct ReLu {
 
 struct Softmax {
     template<size_t len>
-    Tensor<double, len> operator()(Tensor<double, len> x) {
+    Tensor<double, len> operator()(const Tensor<double, len>& x) {
         auto res = x;
         double sm = 0;
         for (auto e: res.data) sm += exp(e);
@@ -47,7 +47,7 @@ struct Softmax {
 
 struct CrossEntropy {
     template<CTensor T>
-    double operator()(T &out, T &test) {
+    double operator()(const T &out, const T &test) {
         if constexpr(T::dim == 0) return -test.data * log(out.data);
         else {
             double res = 0;
@@ -60,7 +60,7 @@ struct CrossEntropy {
 
 struct ErrorSquared {
     template<CTensor T>
-    double operator()(T &out, T &test) {
+    double operator()(const T &out, const T &test) {
         if constexpr(T::dim == 0) return (out.data - test.data) * (out.data - test.data);
         else {
             double res = 0;
@@ -122,17 +122,17 @@ struct SoftmaxBack {
 
 struct CrossEntropyBack {
     template<CTensor T>
-    void operator()(T &out, T &test) {
+    void operator()(T &out, const T &test) {
         if constexpr(T::dim == 0) out = -test.data / out.data;
         else
             for (size_t i = 0; i < T::n; ++i)
-                (*this)(test[i], out[i]);
+                (*this)(out[i], test[i]);
     }
 };
 
 struct ErrorSquaredBack {
     template<CTensor T>
-    void operator()(T &out, T &test) {
+    void operator()(T &out, const T &test) {
         if constexpr(T::dim == 0) out = 2. * (out.data - test.data);
         else {
             for (size_t i = 0; i < T::n; ++i)

@@ -95,9 +95,6 @@
 		<Unit filename="/home/uliana/Neuron_Network/ExpressionTree.h">
 			<Option target="Neuron_Network"/>
 		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/Functions.cpp">
-			<Option target="Neuron_Network"/>
-		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Functions.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>

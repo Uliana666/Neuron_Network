@@ -1,1 +1,1 @@
-/usr/bin/g++-11 -g CMakeFiles/Neuron_Network.dir/main.cpp.o CMakeFiles/Neuron_Network.dir/Functions.cpp.o CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o CMakeFiles/Neuron_Network.dir/Operations.cpp.o -o Neuron_Network 
+/usr/bin/g++-11 -g CMakeFiles/Neuron_Network.dir/main.cpp.o CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o CMakeFiles/Neuron_Network.dir/Operations.cpp.o -o Neuron_Network 

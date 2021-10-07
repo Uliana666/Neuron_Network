@@ -153,30 +153,6 @@ ExpressionTree.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.s
 .PHONY : ExpressionTree.cpp.s
 
-Functions.o: Functions.cpp.o
-.PHONY : Functions.o
-
-# target to build an object file
-Functions.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Functions.cpp.o
-.PHONY : Functions.cpp.o
-
-Functions.i: Functions.cpp.i
-.PHONY : Functions.i
-
-# target to preprocess a source file
-Functions.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Functions.cpp.i
-.PHONY : Functions.cpp.i
-
-Functions.s: Functions.cpp.s
-.PHONY : Functions.s
-
-# target to generate assembly for a file
-Functions.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Functions.cpp.s
-.PHONY : Functions.cpp.s
-
 Operations.o: Operations.cpp.o
 .PHONY : Operations.o
 
@@ -237,9 +213,6 @@ help:
 	@echo "... ExpressionTree.o"
 	@echo "... ExpressionTree.i"
 	@echo "... ExpressionTree.s"
-	@echo "... Functions.o"
-	@echo "... Functions.i"
-	@echo "... Functions.s"
 	@echo "... Operations.o"
 	@echo "... Operations.i"
 	@echo "... Operations.s"

@@ -84,7 +84,8 @@ struct SigmoidBack {
 struct TanghBack {
 
     double operator()(double x) {
-        return (exp(x) - exp(-x)) / (exp(x) + exp(-x));
+        Tangh calc;
+        return 1. - calc(x) * calc(x);
     }
 };
 
@@ -102,16 +103,16 @@ struct ReLuBack {
 
 struct SoftmaxBack {
     template<size_t len>
-    Tensor<double, len> operator()(Tensor<double, len> dE, Tensor<double, len> x) {
-        Tensor<double, len> res(0);
+    Tensor<double, 1, len> operator()(Tensor<double, 1, len> dE, Tensor<double, 1, len> x) {
+        Tensor<double, 1, len> res(0);
         double sm = 0;
-        for (auto &e: x.data) sm += exp(e);
+        for (auto &e: x[0].data) sm += exp(e);
         for (size_t i = 0; i < len; ++i) {
             for (size_t k = 0; k < len; ++k) {
                 if (i != k)
-                    res[i] += -dE[k] * exp(x[k]) * exp(x[i]) / sm / sm;
+                    res[0][i] += -dE[0][k] * exp(x[0][k]) * exp(x[0][i]) / sm / sm;
                 else
-                    res[i] += dE[k] * exp(x[k]) * (sm - exp(x[k])) / sm / sm;
+                    res[0][i] += dE[0][k] * exp(x[0][k]) * (sm - exp(x[0][k])) / sm / sm;
             }
         }
         return res;

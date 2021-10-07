@@ -34,22 +34,13 @@ void print(Network &n) {
 
 int main() {
     Network net;
-    cin >> net.lay1.w;
-    cin >> net.lay2.w;
-    cin >> net.lay3.w;
-    cin >> net.lay1.b;
-    cin >> net.lay2.b;
-    cin >> net.lay3.b;
     std::ifstream test("test_circle");
     Tensor<double, 1, 2> v, g;
-    for (int i = 0; i < 10; ++i) {
-        print(net);
+    for (int i = 0; i < 500000; ++i) {
         test >> v >> g;
         net.Learn(v, g);
-        std::cout << i << std::endl;
         if ((i + 1) % 10 == 0) net.Step();
     }
-    print(net);
     std::cout << "GO" << std::endl;
     while (true) {
         Tensor<double, 1, 2> val;

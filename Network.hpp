@@ -42,30 +42,31 @@ struct Network {
 
     Tensor<double, 1, 2> ForwardProp(Tensor<double, 1, 2> data) {
         in_data = data;
-        ActivateInline(data, tgnt); ////
+        ActivateInline(data, linr); ////
         out_data = data;
         in_lay1 = lay1.calc(data);
-        auto data1 = Activate(lay1.calc(data), tgnt); ////
+        auto data1 = Activate(lay1.calc(data), sigm); ////
         out_lay1 = data1;
         in_lay2 = lay2.calc(data1);
-        auto data2 = Activate(lay2.calc(data1), tgnt);  ////
+        auto data2 = Activate(lay2.calc(data1), sigm);  ////
         out_lay2 = data2;
         in_lay3 = lay3.calc(data2);
-        auto data3 = Activate(lay3.calc(data2), tgnt); ////
+        auto data3 = Activate<1>(lay3.calc(data2), sfmx); ////
         out_lay3 = data3;
         return data3;
     }
 
     void BackwardProp(Tensor<double, 1, 2> test) {
         auto out = out_lay3;
-        er_sqb(out, test); // 0
-        out *= Activate(in_lay3, tgntb); // 1
+        crs_eb(out, test); // 0
+        //out *= Activate(in_lay3, relub); // 1
+        out = sfmxb(out, in_lay3);
         auto out2 = lay3.calcb(out); // 2
         lay3.MoveGradient(out, out_lay2); // 3
-        out2 *= Activate(in_lay2, tgntb); // 1
+        out2 *= Activate(in_lay2, sigmb); // 1
         auto out3 = lay2.calcb(out2); // 2
         lay2.MoveGradient(out2, out_lay1); // 3
-        out3 *= Activate(in_lay1, tgntb); //1
+        out3 *= Activate(in_lay1, sigmb); //1
         auto out4 = lay1.calcb(out3); //2 -- бесполезно
         lay1.MoveGradient(out3, out_data);
     }

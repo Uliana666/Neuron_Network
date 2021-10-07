@@ -33,7 +33,6 @@ struct Layer {
     template<class T>
     void MoveGradient(Tensor<T, 1, out> &lay, Tensor<T, 1, in> &output) {
         ++cnt;
-        std::cout << lay[0] << std::endl;
         for (size_t j = 0; j < in; ++j) {
             for (size_t k = 0; k < out; ++k)
                 w_gradient[j][k] += lay[0][k] * output[0][j];
@@ -43,8 +42,6 @@ struct Layer {
 
     void Step() {
         if (!cnt) return;
-        //std::cout << w_gradient << std::endl;
-        //std::cout << b_gradient << std::endl;
         w_gradient *= speed / cnt;
         b_gradient *= speed / cnt;
         w -= w_gradient;

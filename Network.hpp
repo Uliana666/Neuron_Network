@@ -20,30 +20,66 @@ LinearFunction linr;
 ReLu relu;
 CrossEntropy crs_e;
 ErrorSquared er_sq;
+/////
+SigmoidBack sigmb;
+SoftmaxBack sfmxb;
+TanghBack tgntb;
+LinearFunctionBack linrb;
+ReLuBack relub;
+CrossEntropyBack crs_eb;
+ErrorSquaredBack er_sqb;
 
 
 struct Network {
     int cnt = 0;
     double speed = 0.5;
-    Layer<2, 4> lay1;
-    Layer<4, 4> lay2;
-    Layer<4, 2> lay3;
+    Tensor<double, 1, 2> in_data, out_data;
+    Tensor<double, 1, 4> in_lay1, out_lay1, in_lay2, out_lay2;
+    Tensor<double, 1, 2> in_lay3, out_lay3;
+    Layer<2, 4> lay1{speed};
+    Layer<4, 4> lay2{speed};
+    Layer<4, 2> lay3{speed};
 
-   Tensor<double, 1, 2> ForwardProp(Tensor<double, 1, 2> data) {
-        ActivateInline(data, tgnt);
-        auto data1 = Activate(lay1.calc(data), tgnt);
-        auto data2 = Activate(lay2.calc(data1), tgnt);
-        auto data3 = Activate<1>(lay3.calc(data2), sfmx);
+    Tensor<double, 1, 2> ForwardProp(Tensor<double, 1, 2> data) {
+        in_data = data;
+        ActivateInline(data, tgnt); ////
+        out_data = data;
+        in_lay1 = lay1.calc(data);
+        auto data1 = Activate(lay1.calc(data), tgnt); ////
+        out_lay1 = data1;
+        in_lay2 = lay2.calc(data1);
+        auto data2 = Activate(lay2.calc(data1), tgnt);  ////
+        out_lay2 = data2;
+        in_lay3 = lay3.calc(data2);
+        auto data3 = Activate(lay3.calc(data2), tgnt); ////
+        out_lay3 = data3;
         return data3;
     }
 
-    //void BackwardProp(const std::vector<double> &test);
+    void BackwardProp(Tensor<double, 1, 2> test) {
+        auto out = out_lay3;
+        er_sqb(out, test); // 0
+        out *= Activate(in_lay3, tgntb); // 1
+        auto out2 = lay3.calcb(out); // 2
+        lay3.MoveGradient(out, out_lay2); // 3
+        out2 *= Activate(in_lay2, tgntb); // 1
+        auto out3 = lay2.calcb(out2); // 2
+        lay2.MoveGradient(out2, out_lay1); // 3
+        out3 *= Activate(in_lay1, tgntb); //1
+        auto out4 = lay1.calcb(out3); //2 -- бесполезно
+        lay1.MoveGradient(out3, out_data);
+    }
 
-    //void Learn(const std::vector<double> &data, const std::vector<double> &test);
+    template<class T>
+    void Learn(Tensor<T, 1, 2> &data, Tensor<T, 1, 2> &test) {
+        ForwardProp(data);
+        BackwardProp(test);
+    }
 
-    //void Step();
+    void Step() {
+        lay1.Step(), lay2.Step(), lay3.Step();
+    }
 
-    //void MoveGradient(size_t num_lay, const std::vector<double> &lay, const std::vector<double> &output);
 };
 
 /*
@@ -77,19 +113,6 @@ void Network::Learn(const std::vector<double> &data, const std::vector<double> &
     ForwardProp(data);
     BackwardProp(test);
 }
-
-void Network::BackwardProp(const std::vector<double> &test) {
-    std::vector<double> lay = lossFunction->BackwardProp(output[LAYERS - 1], test);
-    for (int i = LAYERS - 2; i >= 0; --i) {
-        lay = function[i + 1]->BackwardProp(input[i + 1], lay);
-        std::vector<double> lay2(sizes[i], 0.);
-        for (int j = 0; j < sizes[i]; ++j)
-            for (int k = 0; k < sizes[i + 1]; ++k)
-                lay2[j] += lay[k] * w[i][j][k];
-        MoveGradient(i, lay, output[i]);
-        lay = lay2;
-    }
-}
-
 */
+
 #endif

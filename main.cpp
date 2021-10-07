@@ -13,21 +13,19 @@ using namespace std;
 
 int main() {
     Network net;
-    return 0;
-    /*std::ifstream test("test_circle");
-    std::vector<double> v(IN), g(OUT);
-    for (int i = 0; i < 500000; ++i) {
-        for (int j = 0; j < IN; ++j) test >> v[j];
-        for (int j = 0; j < OUT; ++j) test >> g[j];
+    std::ifstream test("test_circle");
+    Tensor<double, 1, 2> v, g;
+    for (int i = 0; i < 5000; ++i) {
+        test >> v >> g;
         net.Learn(v, g);
+        std::cout << i << std::endl;
         if ((i + 1) % 10 == 0) net.Step();
     }
     std::cout << "GO" << std::endl;
     while (true) {
-        std::vector<double> val(IN);
-        for (int i = 0; i < IN; ++i) std::cin >> val[i];
+        Tensor<double, 1, 2> val;
+        cin >> val;
         auto vt = net.ForwardProp(val);
-        for (auto e: vt) std::cout << e << ' ';
-        std::cout << std::endl;
-    }*/
+        std::cout << vt << std::endl;
+    }
 }

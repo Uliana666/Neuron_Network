@@ -19,7 +19,7 @@ int main() {
     double kek = 0;
     for (int i = 0; i < 1000000 / buk; ++i) {
         for (int j = 0; j < buk; ++j) test >> v[j] >> g[j];
-        std::cout << v << '\n' << g;
+        //std::cout << v << '\n' << g;
         net.Learn(v, g, kek);
         if ((i + 1) % 20 == 0) {
             std::cout << kek << std::endl;

@@ -134,7 +134,6 @@ struct ErrorSquaredBack {
     void operator()(T &out, T &test) {
         if constexpr(T::dim == 0) out = 2. * (out.data - test.data);
         else {
-            double res = 0;
             for (size_t i = 0; i < T::n; ++i)
                 (*this)(out[i], test[i]);
             out /= T::n;

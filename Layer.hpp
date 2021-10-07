@@ -7,8 +7,8 @@
 
 template<size_t in, size_t out>
 struct Layer {
-    Tensor<double, in, out> w, w_gradient;
-    Tensor<double, 1, out> b, b_gradient;
+    Tensor<double, in, out> w, w_gradient{0};
+    Tensor<double, 1, out> b, b_gradient{0};
     int cnt = 0;
     double speed;
 
@@ -44,6 +44,7 @@ struct Layer {
     void Step() {
         if (!cnt) return;
         //std::cout << w_gradient << std::endl;
+        //std::cout << b_gradient << std::endl;
         w_gradient *= speed / cnt;
         b_gradient *= speed / cnt;
         w -= w_gradient;

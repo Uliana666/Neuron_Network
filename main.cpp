@@ -17,12 +17,17 @@ int main() {
     std::ifstream test("test_circle");
     Tensor<double, buk, 2> v, g;
     double kek = 0;
-    for (int i = 0; i < 1000000 / buk; ++i) {
+    for (int i = 0; i < 5000000 / buk; ++i) {
         for (int j = 0; j < buk; ++j) test >> v[j] >> g[j];
-        //std::cout << v << '\n' << g;
         net.Learn(v, g, kek);
+        //std::cout << net.Calc(v);
+        //std::cout << v << g;
+       // cout << "--------------------" << endl;
         if ((i + 1) % 20 == 0) {
-            std::cout << kek << std::endl;
+            //std::cout << kek << std::endl;
+            if (kek > 100) {
+                //return 0;
+            }
             kek = 0;
             net.Step();
         }

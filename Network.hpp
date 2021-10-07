@@ -31,7 +31,7 @@ ErrorSquaredBack er_sqb;
 
 template<size_t deep>
 struct Network {
-    double speed = 0.01;
+    double speed = 0.001;
     Tensor<double, deep, 2> out_data;
     Tensor<double, deep, 4> in_lay1, out_lay1, in_lay2, out_lay2;
     Tensor<double, deep, 2> in_lay3, out_lay3;
@@ -84,7 +84,7 @@ struct Network {
     }
 
     template<class T>
-    void Learn(Tensor<T, deep, 2> &data, const Tensor<T, deep, 2> &test, double &kek) {
+    void Learn(Tensor<T, deep, 2> data, const Tensor<T, deep, 2> &test, double &kek) {
         ForwardProp(data);
         kek += crs_e(out_lay3, test);
         BackwardProp(test);

@@ -13,6 +13,13 @@ using namespace std;
 CrossEntropyBack crs_eb0;
 
 int main() {
+    //xs using =
+    //Exs = shared_ptr<NodeTree>;
+    Expression v = Variable("x");
+    Expression u = Mul(v, v);
+    cout << u.Evaluate({{"x", 6}});
+}
+/*int main() {
     const size_t buk = 20;
     Network<buk> net;
     std::ifstream test("test_circle");
@@ -32,4 +39,4 @@ int main() {
         auto vt = net.Calc(val);
         std::cout << vt;
     }
-}
+}*/

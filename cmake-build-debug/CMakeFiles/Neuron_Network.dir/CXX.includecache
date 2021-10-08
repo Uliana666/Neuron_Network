@@ -19,6 +19,8 @@ Operations.hpp
 /home/uliana/Neuron_Network/Operations.hpp
 unordered_map
 -
+utility
+-
 
 /home/uliana/Neuron_Network/Functions.hpp
 iostream
@@ -65,6 +67,10 @@ memory
 -
 unordered_map
 -
+utility
+-
+NodeTree.h
+/home/uliana/Neuron_Network/NodeTree.h
 
 /home/uliana/Neuron_Network/Tensor.hpp
 iostream

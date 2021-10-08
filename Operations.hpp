@@ -4,91 +4,94 @@
 #include <cmath>
 #include <memory>
 #include <unordered_map>
+#include <utility>
+#include "NodeTree.h"
 
-struct variable_ : NodeTree {
+struct variable : NodeTree {
     string name;
 
-    variable_(string s) : name(s) {};
+    explicit variable(string s) : name(std::move(s)) {};
 
     double Calc(const std::unordered_map<string, double> &data) override {
         return (*data.find(name)).second;
     }
 };
 
-struct add_ : NodeTree {
+struct add : NodeTree {
     std::shared_ptr<NodeTree> child1, child2;
 
-    add_(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(a), child2(b) {}
+    add(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(std::move(a)), child2(std::move(b)) {}
 
     double Calc(const std::unordered_map<string, double> &data) override {
         return child1->Calc(data) + child2->Calc(data);
     }
 };
 
-struct sub_ : NodeTree {
+struct sub : NodeTree {
     std::shared_ptr<NodeTree> child1, child2;
 
-    sub_(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(a), child2(b) {}
+    sub(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(std::move(a)), child2(std::move(b)) {}
 
     double Calc(const std::unordered_map<string, double> &data) override {
         return child1->Calc(data) - child2->Calc(data);
     }
 };
 
-struct mul_ : NodeTree {
+struct mul : NodeTree {
     std::shared_ptr<NodeTree> child1, child2;
 
-    mul_(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(a), child2(b) {}
+    mul(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(std::move(a)), child2(std::move(b)) {}
 
     double Calc(const std::unordered_map<string, double> &data) override {
         return child1->Calc(data) * child2->Calc(data);
     }
 };
 
-struct del_ : NodeTree {
+struct del : NodeTree {
     std::shared_ptr<NodeTree> child1, child2;
 
-    del_(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(a), child2(b) {}
+    del(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(std::move(a)), child2(std::move(b)) {}
 
     double Calc(const std::unordered_map<string, double> &data) override {
         return child1->Calc(data) / child2->Calc(data);
     }
 };
 
-struct unSub_ : NodeTree {
-    std::shared_ptr<NodeTree> child;
-
-    unSub_(std::shared_ptr<NodeTree> a) : child(a) {}
-
-    double Calc(const std::unordered_map<string, double> &data) override {
-        return -child->Calc(data);
-    }
-};
-
-struct exp_ : NodeTree {
-    std::shared_ptr<NodeTree> child;
-
-    exp_(std::shared_ptr<NodeTree> a) : child(a) {}
-
-    double Calc(const std::unordered_map<string, double> &data) override {
-        return exp(child->Calc(data));
-    }
-};
-
-struct pow_ : NodeTree {
+struct poww : NodeTree {
     std::shared_ptr<NodeTree> child1, child2;
 
-    pow_(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(a), child2(b) {}
+    poww(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(std::move(a)), child2(std::move(b)) {}
 
     double Calc(const std::unordered_map<string, double> &data) override {
         return pow(child1->Calc(data), child2->Calc(data));
     }
 };
 
-struct constant_ : NodeTree {
+struct unSub : NodeTree {
+    std::shared_ptr<NodeTree> child;
+
+    explicit unSub(std::shared_ptr<NodeTree> a) : child(std::move(a)) {}
+
+    double Calc(const std::unordered_map<string, double> &data) override {
+        return -child->Calc(data);
+    }
+};
+
+struct expp : NodeTree {
+    std::shared_ptr<NodeTree> child;
+
+    explicit expp(std::shared_ptr<NodeTree> a) : child(std::move(a)) {}
+
+    double Calc(const std::unordered_map<string, double> &data) override {
+        return exp(child->Calc(data));
+    }
+};
+
+
+struct constant : NodeTree {
     double val;
 
-    constant_(double x) : val(x) {}
+    explicit constant(double x) : val(x) {}
 
     double Calc(const std::unordered_map<string, double> &data) override {
         return val;

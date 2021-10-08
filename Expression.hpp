@@ -7,13 +7,15 @@
 #include <unordered_map>
 #include <utility>
 #include <memory>
+#include "GraphCalc.hpp"
+#include "Node.hpp"
 
 struct Expression {
     std::shared_ptr<NodeTree> root;
 
     Expression(std::shared_ptr<NodeTree>  a) : root(std::move(a)) {};
 
-    double Evaluate(const std::unordered_map<string, double>& data = {}) {
+    shared_ptr<Node> Evaluate(const std::unordered_map<string, double>& data = {}) {
         return root->Calc(data);
     }
 };

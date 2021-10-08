@@ -95,10 +95,16 @@
 		<Unit filename="/home/uliana/Neuron_Network/Functions.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/GraphCalc.h">
+			<Option target="Neuron_Network"/>
+		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Layer.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Network.hpp">
+			<Option target="Neuron_Network"/>
+		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/Node.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/NodeTree.h">

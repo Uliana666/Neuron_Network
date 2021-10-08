@@ -23,23 +23,21 @@ struct Layer {
 
     template<class T, size_t deep>
     Tensor<T, deep, in> calcb(const Tensor<T, deep, out> &data) {
-        return multy2(data, w);
+        return multy(data, Transposition(w));
     }
 
     template<class T, size_t deep>
     void MoveGradient(const Tensor<T, deep, out> &lay, const Tensor<T, deep, in> &output) {
         ++cnt;
-        w_gradient += multy1(output, lay);
+        w_gradient += multy(Transposition(output), lay);
         for (auto &e: lay.data) b_gradient += e;
     }
 
     void Step() {
         if (!cnt) return;
-        //std::cout << w_gradient;
         w -= (w_gradient *= speed / cnt);
         b -= (b_gradient *= speed / cnt);
-        b_gradient.fill();
-        w_gradient.fill();
+        b_gradient.fill(), w_gradient.fill();
         cnt = 0;
     }
 };

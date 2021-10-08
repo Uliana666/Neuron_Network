@@ -314,27 +314,5 @@ Tensor<T, len, len1> multy(const Tensor<T, len, len0> &t0, const Tensor<T, len0,
     return res;
 }
 
-template<class T, size_t len, size_t len0, size_t len1>
-Tensor<T, len, len1> multy1(const Tensor<T, len0, len> &t0, const Tensor<T, len0, len1> &t1) {
-    Tensor<T, len, len1> res(0);
-    for (size_t i = 0; i < len; ++i)
-        for (size_t k = 0; k < len0; ++k)
-            for (size_t j = 0; j < len1; ++j) {
-                res[i][j] += t0[k][i] * t1[k][j];
-            }
-    return res;
-}
-
-template<class T, size_t len, size_t len0, size_t len1>
-Tensor<T, len, len1> multy2(const Tensor<T, len, len0> &t0, const Tensor<T, len1, len0> &t1) {
-    Tensor<T, len, len1> res(0);
-    for (size_t i = 0; i < len; ++i)
-        for (size_t k = 0; k < len0; ++k)
-            for (size_t j = 0; j < len1; ++j) {
-                res[i][j] += t0[i][k] * t1[j][k];
-            }
-    return res;
-}
-
 #endif
 

@@ -3,7 +3,7 @@
 
 
 struct NodeTree {
-    virtual double Calc(std::unordered_map<string, double> &data) = 0;
+    virtual double Calc(const std::unordered_map<string, double> &data) = 0;
 
     virtual ~NodeTree() {}
 };

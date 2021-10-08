@@ -10,14 +10,7 @@
 #include "Apply.hpp"
 
 using namespace std;
-
-
-int main() {
-    Expression v = Add(Constant(6), Variable("x"));
-    double val = v.Evaluate();
-    cout << val;
-}
-/*CrossEntropyBack crs_eb0;
+CrossEntropyBack crs_eb0;
 
 int main() {
     const size_t buk = 20;
@@ -29,7 +22,6 @@ int main() {
         for (int j = 0; j < buk; ++j) test >> v[j] >> g[j];
         net.Learn(v, g, kek);
         std::cout << kek << ' ' << i << std::endl;
-        //if ((i + 1) % 20 == 0) net.Step(), kek = 0;
         net.Step();
         kek = 0;
     }
@@ -40,4 +32,4 @@ int main() {
         auto vt = net.Calc(val);
         std::cout << vt;
     }
-}*/
+}

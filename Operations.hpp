@@ -10,8 +10,8 @@ struct variable_ : NodeTree {
 
     variable_(string s) : name(s) {};
 
-    double Calc(std::unordered_map<string, double> &data) override {
-        return data[name];
+    double Calc(const std::unordered_map<string, double> &data) override {
+        return (*data.find(name)).second;
     }
 };
 
@@ -20,7 +20,7 @@ struct add_ : NodeTree {
 
     add_(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(a), child2(b) {}
 
-    double Calc(std::unordered_map<string, double> &data) override {
+    double Calc(const std::unordered_map<string, double> &data) override {
         return child1->Calc(data) + child2->Calc(data);
     }
 };
@@ -30,7 +30,7 @@ struct sub_ : NodeTree {
 
     sub_(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(a), child2(b) {}
 
-    double Calc(std::unordered_map<string, double> &data) override {
+    double Calc(const std::unordered_map<string, double> &data) override {
         return child1->Calc(data) - child2->Calc(data);
     }
 };
@@ -40,7 +40,7 @@ struct mul_ : NodeTree {
 
     mul_(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(a), child2(b) {}
 
-    double Calc(std::unordered_map<string, double> &data) override {
+    double Calc(const std::unordered_map<string, double> &data) override {
         return child1->Calc(data) * child2->Calc(data);
     }
 };
@@ -50,7 +50,7 @@ struct del_ : NodeTree {
 
     del_(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(a), child2(b) {}
 
-    double Calc(std::unordered_map<string, double> &data) override {
+    double Calc(const std::unordered_map<string, double> &data) override {
         return child1->Calc(data) / child2->Calc(data);
     }
 };
@@ -60,7 +60,7 @@ struct unSub_ : NodeTree {
 
     unSub_(std::shared_ptr<NodeTree> a) : child(a) {}
 
-    double Calc(std::unordered_map<string, double> &data) override {
+    double Calc(const std::unordered_map<string, double> &data) override {
         return -child->Calc(data);
     }
 };
@@ -70,7 +70,7 @@ struct exp_ : NodeTree {
 
     exp_(std::shared_ptr<NodeTree> a) : child(a) {}
 
-    double Calc(std::unordered_map<string, double> &data) override {
+    double Calc(const std::unordered_map<string, double> &data) override {
         return exp(child->Calc(data));
     }
 };
@@ -80,7 +80,7 @@ struct pow_ : NodeTree {
 
     pow_(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(a), child2(b) {}
 
-    double Calc(std::unordered_map<string, double> &data) override {
+    double Calc(const std::unordered_map<string, double> &data) override {
         return pow(child1->Calc(data), child2->Calc(data));
     }
 };
@@ -90,7 +90,7 @@ struct constant_ : NodeTree {
 
     constant_(double x) : val(x) {}
 
-    double Calc(std::unordered_map<string, double> &data) override {
+    double Calc(const std::unordered_map<string, double> &data) override {
         return val;
     }
 };

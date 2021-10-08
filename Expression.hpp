@@ -11,7 +11,7 @@ struct Expression {
 
     Expression(std::shared_ptr<NodeTree> a) : root(a) {};
 
-    double Evaluate(std::unordered_map<string, double> data = {}) {
+    double Evaluate(const std::unordered_map<string, double>& data = {}) {
         return root->Calc(data);
     }
 };

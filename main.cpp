@@ -13,9 +13,8 @@ using namespace std;
 
 
 int main() {
-    Expression v = Mul(Add(Variable("x"), Variable("y")), Exp(Pow(Variable("x"), Constant(2))));
-    double val = v.Evaluate({{"x", 1},
-                              {"y", 2}});
+    Expression v = Add(Constant(6), Variable("x"));
+    double val = v.Evaluate();
     cout << val;
 }
 /*CrossEntropyBack crs_eb0;

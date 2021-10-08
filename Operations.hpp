@@ -67,10 +67,10 @@ struct poww : NodeTree {
     }
 };
 
-struct unSub : NodeTree {
+struct unSubb : NodeTree {
     std::shared_ptr<NodeTree> child;
 
-    explicit unSub(std::shared_ptr<NodeTree> a) : child(std::move(a)) {}
+    explicit unSubb(std::shared_ptr<NodeTree> a) : child(std::move(a)) {}
 
     double Calc(const std::unordered_map<string, double> &data) override {
         return -child->Calc(data);

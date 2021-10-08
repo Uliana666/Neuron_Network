@@ -6,6 +6,7 @@
 #include "Operations.hpp"
 #include <unordered_map>
 #include <utility>
+#include <memory>
 
 struct Expression {
     std::shared_ptr<NodeTree> root;
@@ -38,11 +39,11 @@ Expression Pow(const Expression& a, const Expression& b) {
 }
 
 Expression unSub(const Expression& a) {
-    return {std::make_shared<unSub>(a.root)};
+    return {std::make_shared<unSubb>(a.root)};
 }
 
 Expression Exp(const Expression& a) {
-    return {std::make_shared<exp>(a.root)};
+    return {std::make_shared<expp>(a.root)};
 }
 
 Expression Variable(const string& s) {

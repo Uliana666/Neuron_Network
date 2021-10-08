@@ -5,11 +5,20 @@
 
 #include "Network.hpp"
 #include "Functions.hpp"
-#include "ExpressionTree.h"
+#include "Expression.hpp"
+#include "Operations.hpp"
 #include "Apply.hpp"
 
 using namespace std;
-CrossEntropyBack crs_eb0;
+
+
+int main() {
+    Expression v = Mul(Add(Variable("x"), Variable("y")), Exp(Pow(Variable("x"), Constant(2))));
+    double val = v.Evaluate({{"x", 1},
+                              {"y", 2}});
+    cout << val;
+}
+/*CrossEntropyBack crs_eb0;
 
 int main() {
     const size_t buk = 20;
@@ -32,4 +41,4 @@ int main() {
         auto vt = net.Calc(val);
         std::cout << vt;
     }
-}
+}*/

@@ -129,54 +129,6 @@ Neuron_Network/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/build
 .PHONY : Neuron_Network/fast
 
-ExpressionTree.o: ExpressionTree.cpp.o
-.PHONY : ExpressionTree.o
-
-# target to build an object file
-ExpressionTree.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o
-.PHONY : ExpressionTree.cpp.o
-
-ExpressionTree.i: ExpressionTree.cpp.i
-.PHONY : ExpressionTree.i
-
-# target to preprocess a source file
-ExpressionTree.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.i
-.PHONY : ExpressionTree.cpp.i
-
-ExpressionTree.s: ExpressionTree.cpp.s
-.PHONY : ExpressionTree.s
-
-# target to generate assembly for a file
-ExpressionTree.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.s
-.PHONY : ExpressionTree.cpp.s
-
-Operations.o: Operations.cpp.o
-.PHONY : Operations.o
-
-# target to build an object file
-Operations.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Operations.cpp.o
-.PHONY : Operations.cpp.o
-
-Operations.i: Operations.cpp.i
-.PHONY : Operations.i
-
-# target to preprocess a source file
-Operations.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Operations.cpp.i
-.PHONY : Operations.cpp.i
-
-Operations.s: Operations.cpp.s
-.PHONY : Operations.s
-
-# target to generate assembly for a file
-Operations.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/Operations.cpp.s
-.PHONY : Operations.cpp.s
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -210,12 +162,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Neuron_Network"
-	@echo "... ExpressionTree.o"
-	@echo "... ExpressionTree.i"
-	@echo "... ExpressionTree.s"
-	@echo "... Operations.o"
-	@echo "... Operations.i"
-	@echo "... Operations.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

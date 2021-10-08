@@ -8,8 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/uliana/Neuron_Network/ExpressionTree.cpp" "/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles/Neuron_Network.dir/ExpressionTree.cpp.o"
-  "/home/uliana/Neuron_Network/Operations.cpp" "/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles/Neuron_Network.dir/Operations.cpp.o"
   "/home/uliana/Neuron_Network/main.cpp" "/home/uliana/Neuron_Network/cmake-build-debug/CMakeFiles/Neuron_Network.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

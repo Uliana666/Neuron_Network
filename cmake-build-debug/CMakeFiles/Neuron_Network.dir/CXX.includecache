@@ -10,12 +10,14 @@
 Functions.hpp
 /home/uliana/Neuron_Network/Functions.hpp
 
-/home/uliana/Neuron_Network/ExpressionTree.h
+/home/uliana/Neuron_Network/Expression.hpp
+memory
+-
 NodeTree.h
 /home/uliana/Neuron_Network/NodeTree.h
-Operations.h
-/home/uliana/Neuron_Network/Operations.h
-memory
+Operations.hpp
+/home/uliana/Neuron_Network/Operations.hpp
+unordered_map
 -
 
 /home/uliana/Neuron_Network/Functions.hpp
@@ -53,15 +55,15 @@ utility
 -
 memory
 -
-ExpressionTree.h
-/home/uliana/Neuron_Network/ExpressionTree.h
 
 /home/uliana/Neuron_Network/NodeTree.h
 
-/home/uliana/Neuron_Network/Operations.h
-NodeTree.h
-/home/uliana/Neuron_Network/NodeTree.h
+/home/uliana/Neuron_Network/Operations.hpp
+cmath
+-
 memory
+-
+unordered_map
 -
 
 /home/uliana/Neuron_Network/Tensor.hpp
@@ -87,8 +89,10 @@ Network.hpp
 /home/uliana/Neuron_Network/Network.hpp
 Functions.hpp
 /home/uliana/Neuron_Network/Functions.hpp
-ExpressionTree.h
-/home/uliana/Neuron_Network/ExpressionTree.h
+Expression.hpp
+/home/uliana/Neuron_Network/Expression.hpp
+Operations.hpp
+/home/uliana/Neuron_Network/Operations.hpp
 Apply.hpp
 /home/uliana/Neuron_Network/Apply.hpp
 

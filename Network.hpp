@@ -10,7 +10,6 @@
 #include <random>
 #include <utility>
 #include <memory>
-#include "ExpressionTree.h"
 
 using namespace std;
 Sigmoid sigm;

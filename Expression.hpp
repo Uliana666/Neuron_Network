@@ -1,5 +1,5 @@
-#ifndef NEURON_NETWORK_EXPRESSION_H
-#define NEURON_NETWORK_EXPRESSION_H
+#ifndef NEURON_NETWORK_EXPRESSION_HPP
+#define NEURON_NETWORK_EXPRESSION_HPP
 
 #include <memory>
 #include "NodeTree.h"

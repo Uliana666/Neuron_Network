@@ -1,5 +1,5 @@
-#ifndef NEURON_NETWORK_NETWORK_H
-#define NEURON_NETWORK_NETWORK_H
+#ifndef NEURON_NETWORK_NETWORK_HPP
+#define NEURON_NETWORK_NETWORK_HPP
 
 #include <random>
 #include <memory>

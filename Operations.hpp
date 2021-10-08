@@ -15,7 +15,7 @@ struct variable : NodeTree {
     explicit variable(string s) : name(std::move(s)) {};
 
     std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<valf>((*data.find(name)).second);
+        return std::make_shared<valf>((*data.find(name)).second, grad);
     }
 };
 
@@ -96,7 +96,7 @@ struct constant : NodeTree {
     explicit constant(double x) : val(x) {}
 
     std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<valf>(val);
+        return std::make_shared<constf>(val);
     }
 };
 

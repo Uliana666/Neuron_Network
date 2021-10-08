@@ -1,6 +1,6 @@
 
-#ifndef NEURON_NETWORK_LAYER_H
-#define NEURON_NETWORK_LAYER_H
+#ifndef NEURON_NETWORK_LAYER_HPP
+#define NEURON_NETWORK_LAYER_HPP
 
 #include "Tensor.hpp"
 #include "Apply.hpp"

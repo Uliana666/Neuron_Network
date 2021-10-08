@@ -4,6 +4,8 @@
 struct Node {
     double val{};
 
+    virtual void Back(double y) = 0;
+
     virtual ~Node() = default;
 };
 

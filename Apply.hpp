@@ -1,6 +1,6 @@
 
-#ifndef NEURON_NETWORK_APPLY_H
-#define NEURON_NETWORK_APPLY_H
+#ifndef NEURON_NETWORK_APPLY_HPP
+#define NEURON_NETWORK_APPLY_HPP
 
 #include "Functions.hpp"
 

@@ -13,11 +13,17 @@ using namespace std;
 CrossEntropyBack crs_eb0;
 
 int main() {
-    Expression v = Mul(Add(Variable("x"), Variable("y")), Exp(Pow(Variable("x"), Constant(2))));
+    auto x = Variable("x");
+    auto y = Variable("y");
+    Expression v = Mul(Add(x, y), Exp(Pow(x, Constant(2))));
+    //Expression v = Mul(Pow(x, y), Constant(2));
+    //Expression v = Add(Add(Mul(Pow(x, Constant(2)), Constant(3)), Mul(Constant(2), x)), Constant(4));
     auto g = v.Evaluate({{"x", 1},
                          {"y", 2}});
-    cout << g->val;
-    //cout << u.Evaluate({{"x", 6}});
+    cout << g->val << endl;
+    g->Back(1);
+    cout << x.root->grad << endl;
+    cout << y.root->grad << endl;
 }
 /*int main() {
     const size_t buk = 20;

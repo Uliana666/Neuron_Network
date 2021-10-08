@@ -1,5 +1,5 @@
-#ifndef NEURON_NETWORK_FUNCTIONS_H
-#define NEURON_NETWORK_FUNCTIONS_H
+#ifndef NEURON_NETWORK_FUNCTIONS_HPP
+#define NEURON_NETWORK_FUNCTIONS_HPP
 
 #include <iostream>
 #include <vector>

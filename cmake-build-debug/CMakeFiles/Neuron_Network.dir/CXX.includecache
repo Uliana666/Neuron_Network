@@ -10,24 +10,6 @@
 Functions.hpp
 /home/uliana/Neuron_Network/Functions.hpp
 
-/home/uliana/Neuron_Network/Expression.hpp
-memory
--
-NodeTree.h
-/home/uliana/Neuron_Network/NodeTree.h
-Operations.hpp
-/home/uliana/Neuron_Network/Operations.hpp
-unordered_map
--
-utility
--
-memory
--
-GraphCalc.hpp
-/home/uliana/Neuron_Network/GraphCalc.hpp
-Node.hpp
-/home/uliana/Neuron_Network/Node.hpp
-
 /home/uliana/Neuron_Network/Functions.hpp
 iostream
 -
@@ -119,8 +101,6 @@ Network.hpp
 /home/uliana/Neuron_Network/Network.hpp
 Functions.hpp
 /home/uliana/Neuron_Network/Functions.hpp
-Expression.hpp
-/home/uliana/Neuron_Network/Expression.hpp
 Operations.hpp
 /home/uliana/Neuron_Network/Operations.hpp
 Apply.hpp

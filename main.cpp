@@ -5,7 +5,6 @@
 
 #include "Network.hpp"
 #include "Functions.hpp"
-#include "Expression.hpp"
 #include "Operations.hpp"
 #include "Apply.hpp"
 
@@ -13,17 +12,18 @@ using namespace std;
 CrossEntropyBack crs_eb0;
 
 int main() {
-    auto x = Variable("x");
-    auto y = Variable("y");
-    Expression v = Mul(Add(x, y), Exp(Pow(x, Constant(2))));
+    auto x = make_shared<variable>("x");
+    auto y = make_shared<variable>("y");
+    std::shared_ptr<NodeTree> v = make_shared<mul>(make_shared<add>(x, y),
+                                                   make_shared<expp>(make_shared<poww>(x, make_shared<constant>(2))));
     //Expression v = Mul(Pow(x, y), Constant(2));
     //Expression v = Add(Add(Mul(Pow(x, Constant(2)), Constant(3)), Mul(Constant(2), x)), Constant(4));
-    auto g = v.Evaluate({{"x", 1},
+    auto g = v->Calc({{"x", 1},
                          {"y", 2}});
     cout << g->val << endl;
     g->Back(1);
-    cout << x.root->grad << endl;
-    cout << y.root->grad << endl;
+    cout << x->grad << endl;
+    cout << y->grad << endl;
 }
 /*int main() {
     const size_t buk = 20;

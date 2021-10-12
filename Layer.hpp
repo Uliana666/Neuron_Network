@@ -2,43 +2,31 @@
 #ifndef NEURON_NETWORK_LAYER_HPP
 #define NEURON_NETWORK_LAYER_HPP
 
+#include <memory>
 #include "Tensor.hpp"
 #include "Apply.hpp"
+#include "Node.hpp"
+#include "AutogradOperations.hpp"
 
 template<size_t in, size_t out>
 struct Layer {
-    Tensor<double, in, out> w, w_gradient{0};
-    Tensor<double, out> b, b_gradient{0};
-    int cnt = 0;
+    std::shared_ptr<Node<Tensor<double, in, out>>> w = CreateAuto(Tensor<double, in, out>());
+    std::shared_ptr<Node<Tensor<double, out>>> b = CreateAuto(Tensor<double, out>());
     double speed;
 
     Layer(double x) : speed(x) {}
 
     template<class T, size_t deep>
-    Tensor<T, deep, out> calc(const Tensor<T, deep, in> &data) {
-        auto res = multy(data, w);
-        for (auto &e: res.data) e += b;
-        return res;
+    std::shared_ptr<Node<Tensor<T, deep, out>>> calc(std::shared_ptr<Node<Tensor<T, deep, in>>> data) {
+        auto res = MultyMatrix(data, w);
+        return Add_b(res, b);
     }
 
-    template<class T, size_t deep>
-    Tensor<T, deep, in> calcb(const Tensor<T, deep, out> &data) {
-        return multy(data, Transposition(w));
-    }
-
-    template<class T, size_t deep>
-    void MoveGradient(const Tensor<T, deep, out> &lay, const Tensor<T, deep, in> &output) {
-        ++cnt;
-        w_gradient += multy(Transposition(output), lay);
-        for (auto &e: lay.data) b_gradient += e;
-    }
-
-    void Step() {
-        if (!cnt) return;
-        w -= (w_gradient *= speed / cnt);
-        b -= (b_gradient *= speed / cnt);
-        b_gradient.fill(), w_gradient.fill();
-        cnt = 0;
+    void Step(double cnt) {
+        std::cout << cnt << std::endl;
+        w->val -= (w->grad * (speed / cnt));
+        b->val -= (b->grad * (speed / cnt));
+        b->grad.fill(), w->grad.fill();
     }
 };
 

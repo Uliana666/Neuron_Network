@@ -50,8 +50,7 @@ std::shared_ptr<Node<T>> exp(std::shared_ptr<Node<T>> a) {
 }
 
 template<class T, size_t len1, size_t k, size_t len2>
-std::shared_ptr<Node<T>>
-MultyMatrix(std::shared_ptr<Node<Tensor<T, len1, k>>> a, std::shared_ptr<Node<Tensor<T, k, len2>>> b) {
+std::shared_ptr<Node<Tensor<T, len1, len2>>> MultyMatrix(std::shared_ptr<Node<Tensor<T, len1, k>>> a, std::shared_ptr<Node<Tensor<T, k, len2>>> b) {
     return std::make_shared<multy_matrix<T, len1, k, len2>>(a, b);
 }
 

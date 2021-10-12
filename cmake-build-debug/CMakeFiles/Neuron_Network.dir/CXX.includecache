@@ -37,10 +37,16 @@ Apply.hpp
 /home/uliana/Neuron_Network/Apply.hpp
 
 /home/uliana/Neuron_Network/Layer.hpp
+memory
+-
 Tensor.hpp
 /home/uliana/Neuron_Network/Tensor.hpp
 Apply.hpp
 /home/uliana/Neuron_Network/Apply.hpp
+Node.hpp
+/home/uliana/Neuron_Network/Node.hpp
+AutogradOperations.hpp
+/home/uliana/Neuron_Network/AutogradOperations.hpp
 
 /home/uliana/Neuron_Network/Network.hpp
 random
@@ -61,6 +67,8 @@ utility
 -
 memory
 -
+AutogradOperations.hpp
+/home/uliana/Neuron_Network/AutogradOperations.hpp
 
 /home/uliana/Neuron_Network/Node.hpp
 Tensor.hpp
@@ -81,18 +89,8 @@ iostream
 -
 bits/stdc++.h
 -
-memory
--
 cmath
 -
 Network.hpp
 /home/uliana/Neuron_Network/Network.hpp
-Functions.hpp
-/home/uliana/Neuron_Network/Functions.hpp
-GraphCalc.hpp
-/home/uliana/Neuron_Network/GraphCalc.hpp
-Apply.hpp
-/home/uliana/Neuron_Network/Apply.hpp
-AutogradOperations.hpp
-/home/uliana/Neuron_Network/AutogradOperations.hpp
 

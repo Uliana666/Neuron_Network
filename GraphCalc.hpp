@@ -42,12 +42,12 @@ struct add_b : Node<T> {
 
     add_b(std::shared_ptr<Node<T>> a, std::shared_ptr<Node<T1>> b) : child1(std::move(a)), child2(std::move(b)) {
         Node<T>::val = child1->val;
-        for (auto &e: Node<T>::val) e += child2->val;
+        for (auto &e: Node<T>::val.data) e += child2->val;
     }
 
     void Back() override {
         child1->grad += Node<T>::grad;
-        for (auto &e: Node<T>::grad) child2->grad += e;
+        for (auto &e: Node<T>::grad.data) child2->grad += e;
         child1->Back(), child2->Back();
     }
 };

@@ -1,9 +1,10 @@
 #ifndef NEURON_NETWORK_NODE_HPP
 #define NEURON_NETWORK_NODE_HPP
-
+#include "Tensor.hpp"
+template<CTensor T>
 struct Node {
-    double val{};
-    double grad = 0;
+    T val{};
+    T grad{0};
 
     virtual void Back() = 0;
 

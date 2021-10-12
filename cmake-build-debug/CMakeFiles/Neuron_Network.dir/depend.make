@@ -8,7 +8,5 @@ CMakeFiles/Neuron_Network.dir/main.cpp.o: \
  ../Layer.hpp \
  ../Network.hpp \
  ../Node.hpp \
- ../NodeTree.h \
- ../Operations.hpp \
  ../Tensor.hpp \
  ../main.cpp

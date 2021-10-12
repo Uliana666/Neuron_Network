@@ -100,6 +100,10 @@ struct Tensor<T> {
         return Tensor<T>(data / t.data);
     }
 
+    Tensor<T> operator-() {
+        return Tensor<T>(-data);
+    }
+
     Tensor<T> operator=(T x) {
         data = x;
         return *this;
@@ -247,6 +251,10 @@ struct Tensor<T, len, sizes...> {
         return (N /= t);
     }
 
+    Tensor<T, len, sizes...> operator-() {
+        return (*this) * -1.;
+    }
+
     size_t size() const {
         return len;
     }
@@ -312,6 +320,28 @@ Tensor<T, len, len1> multy(const Tensor<T, len, len0> &t0, const Tensor<T, len0,
                 res[i][j] += t0[i][k] * t1[k][j];
             }
     return res;
+}
+
+template<class T>
+void powInline(Tensor<T> &a, const Tensor<T> &b) {
+    a = pow(a.data, b.data);
+}
+
+template<class T>
+Tensor<T> pow(Tensor<T> &a, const Tensor<T> &b) {
+    return Tensor<T>(pow(a, b));
+}
+
+template<class T, size_t len, size_t... sizes>
+void powInline(Tensor<T, len, sizes...> &a, const Tensor<T, len, sizes...> &b) {
+    for (size_t i = 0; i < len; ++i) powInline(a[i], b[i]);
+}
+
+template<class T, size_t len, size_t... sizes>
+Tensor<T, len, sizes...> pow(const Tensor<T, len, sizes...> &a, const Tensor<T, len, sizes...> &b) {
+    auto N = a;
+    powInline(N, b);
+    return N;
 }
 
 #endif

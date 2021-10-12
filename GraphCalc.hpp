@@ -4,119 +4,139 @@
 #include "Node.hpp"
 #include <memory>
 #include <utility>
+#include "Apply.hpp"
 
-struct addf : Node {
-    std::shared_ptr<Node> child1, child2;
+template<CTensor T>
 
-    addf(std::shared_ptr<Node> a, std::shared_ptr<Node> b) : child1(std::move(a)), child2(std::move(b)) {
-        val = child1->val + child2->val;
+struct variable : Node<T> {
+    T &gradient;
+
+    explicit variable(T x, T &where) : gradient(where) {
+        Node<T>::val = x;
     }
 
-    void Back() override {
-        child1->grad += grad;
-        child2->grad += grad;
-        child1->Back(), child2->Back();
-    }
+    void Back() override { gradient += Node<T>::grad; }
 };
 
-struct subf : Node {
-    std::shared_ptr<Node> child1, child2;
+template<CTensor T>
 
-    subf(std::shared_ptr<Node> a, std::shared_ptr<Node> b) : child1(std::move(a)), child2(std::move(b)) {
-        val = child1->val - child2->val;
-    }
-
-    void Back() override {
-        child1->grad += grad;
-        child2->grad += -grad;
-        child1->Back(), child2->Back();
-    }
-};
-
-struct mulf : Node {
-    std::shared_ptr<Node> child1, child2;
-
-    mulf(std::shared_ptr<Node> a, std::shared_ptr<Node> b) : child1(std::move(a)), child2(std::move(b)) {
-        val = child1->val * child2->val;
-    }
-
-    void Back() override {
-        child1->grad += grad * child2->val;
-        child2->grad += grad * child1->val;
-        child1->Back(), child2->Back();
-    }
-};
-
-struct delf : Node {
-    std::shared_ptr<Node> child1, child2;
-
-    delf(std::shared_ptr<Node> a, std::shared_ptr<Node> b) : child1(std::move(a)), child2(std::move(b)) {
-        val = child1->val / child2->val;
-    }
-
-    void Back() override {
-        child1->grad += grad / child2->val;
-        child2->grad += -grad / child1->val / child1->val;
-        child1->Back(), child2->Back();
-    }
-};
-
-struct powff : Node {
-    std::shared_ptr<Node> child1, child2;
-
-    powff(std::shared_ptr<Node> a, std::shared_ptr<Node> b) : child1(std::move(a)), child2(std::move(b)) {
-        val = pow(child1->val, child2->val);
-    }
-
-    void Back() override {
-        child1->grad += grad * (child2->val) * pow(child1->val, child2->val - 1);
-        child2->grad += -grad * val * log(child1->val);
-        child1->Back(), child2->Back();
-    }
-};
-
-struct unsubf : Node {
-    std::shared_ptr<Node> child;
-
-    explicit unsubf(std::shared_ptr<Node> a) : child(std::move(a)) {
-        val = -child->val;
-    }
-
-    void Back() override {
-        child->grad += -grad;
-        child->Back();
-    }
-};
-
-struct expff : Node {
-    std::shared_ptr<Node> child;
-
-    explicit expff(std::shared_ptr<Node> a) : child(std::move(a)) {
-        val = exp(child->val);
-    }
-
-    void Back() override {
-        child->grad += grad * val;
-        child->Back();
-    }
-};
-
-struct valf : Node {
-    double &gradient;
-
-    explicit valf(double x, double &where) : gradient(where) {
-        val = x;
-    }
-
-    void Back() override { gradient += grad; }
-};
-
-struct constf : Node {
-    explicit constf(double x) {
-        val = x;
+struct const_val : Node<T> {
+    explicit const_val(T x) {
+        Node<T>::val = x;
     }
 
     void Back() override {}
 };
+
+template<CTensor T, CTensor T1, CTensor T2>
+struct add : Node<T> {
+    std::shared_ptr<Node<T1>> child1;
+    std::shared_ptr<Node<T2>> child2;
+
+    add(std::shared_ptr<Node<T1>> a, std::shared_ptr<Node<T2>> b) : child1(std::move(a)), child2(std::move(b)) {
+        Node<T>::val = child1->val + child2->val;
+    }
+
+    void Back() override {
+        child1->grad += Node<T>::grad;
+        child2->grad += Node<T>::grad;
+        child1->Back(), child2->Back();
+    }
+};
+
+template<CTensor T, CTensor T1, CTensor T2>
+
+struct sub : Node<T> {
+    std::shared_ptr<Node<T1>> child1;
+    std::shared_ptr<Node<T2>> child2;
+
+    sub(std::shared_ptr<Node<T1>> a, std::shared_ptr<Node<T2>> b) : child1(std::move(a)), child2(std::move(b)) {
+        Node<T>::val = child1->val - child2->val;
+    }
+
+    void Back() override {
+        child1->grad += Node<T>::grad;
+        child2->grad += -Node<T>::grad;
+        child1->Back(), child2->Back();
+    }
+};
+
+template<CTensor T>
+
+struct mul : Node<T> {
+    std::shared_ptr<Node<T>> child1, child2;
+
+    mul(std::shared_ptr<Node<T>> a, std::shared_ptr<Node<T>> b) : child1(std::move(a)), child2(std::move(b)) {
+        Node<T>::val = child1->val * child2->val;
+    }
+
+    void Back() override {
+        child1->grad += Node<T>::grad * child2->val;
+        child2->grad += Node<T>::grad * child1->val;
+        child1->Back(), child2->Back();
+    }
+};
+
+template<CTensor T>
+struct del : Node<T> {
+    std::shared_ptr<Node<T>> child1, child2;
+
+    del(std::shared_ptr<Node<T>> a, std::shared_ptr<Node<T>> b) : child1(std::move(a)), child2(std::move(b)) {
+        Node<T>::val = child1->val / child2->val;
+    }
+
+    void Back() override {
+        child1->grad += Node<T>::grad / child2->val;
+        child2->grad += -Node<T>::grad / child1->val / child1->val;
+        child1->Back(), child2->Back();
+    }
+};
+
+template<CTensor T>
+
+struct pow_f : Node<T> {
+    std::shared_ptr<Node<T>> child1, child2;
+
+    pow_f(std::shared_ptr<Node<T>> a, std::shared_ptr<Node<T>> b) : child1(std::move(a)), child2(std::move(b)) {
+        Node<T>::val = pow(child1->val, child2->val);
+    }
+
+    void Back() override {
+        child1->grad += Node<T>::grad * (child2->val) * pow(child1->val, child2->val - 1);
+        child2->grad += Node<T>::grad * Node<T>::val * Activate(child1->val, logl);
+        child1->Back(), child2->Back();
+    }
+};
+
+template<CTensor T>
+
+struct unsub : Node<T> {
+    std::shared_ptr<Node<T>> child;
+
+    explicit unsub(std::shared_ptr<Node<T>> a) : child(std::move(a)) {
+        Node<T>::val = -child->val;
+    }
+
+    void Back() override {
+        child->grad += -Node<T>::grad;
+        child->Back();
+    }
+};
+
+template<CTensor T>
+
+struct exp_f : Node<T> {
+    std::shared_ptr<Node<T>> child;
+
+    explicit exp_f(std::shared_ptr<Node<T>> a) : child(std::move(a)) {
+        Node<T>::val = Activate(child->val, expl);
+    }
+
+    void Back() override {
+        child->grad += Node<T>::grad * Node<T>::val;
+        child->Back();
+    }
+};
+
 
 #endif

@@ -5,26 +5,26 @@
 
 #include "Network.hpp"
 #include "Functions.hpp"
-#include "Operations.hpp"
+#include "GraphCalc.hpp"
 #include "Apply.hpp"
 
 using namespace std;
 CrossEntropyBack crs_eb0;
+#define kek Tensor<double, 2>
 
 int main() {
-    double xx = 1, yy = 2;
-    auto x = make_shared<variable>(xx);
-    auto y = make_shared<variable>(yy);
-    std::shared_ptr<NodeTree> v = make_shared<mul>(make_shared<add>(x, y),
-    make_shared<expp>(make_shared<poww>(x, make_shared<constant>(2))));
-    //std::shared_ptr<NodeTree> v = make_shared<mul>(x, y);
-    //Expression v = Mul(Pow(x, y), Constant(2));
-    //Expression v = Add(Add(Mul(Pow(x, Constant(2)), Constant(3)), Mul(Constant(2), x)), Constant(4));
-    v->Calc();
-    auto g = v->val;
-    g->grad = 1;
-    cout << g->val << endl;
-    g->Back();
+    kek xx(1), yy(2);
+    kek xgr(0), ygr(0);
+    auto x = make_shared<variable<kek>>(xx, xgr);
+    auto y = make_shared<variable<kek>>(yy, ygr);
+    auto cnt = make_shared<const_val<Tensor<double>>>(Tensor<double>(2));
+    std::shared_ptr<Node<kek>> v = make_shared<mul<kek>>(make_shared<add<kek>>(x, y), make_shared<exp_f<kek>>(
+            make_shared<pow_f<kek>>(x, cnt)));
+    //std::shared_ptr<Node<kek>> v = make_shared<pow_f<kek>>(x, y);
+    cout << "OK\n";
+    v->grad.fill(1);
+    cout << v->val << endl;
+    v->Back();
     cout << x->grad << endl;
     cout << y->grad << endl;
 }

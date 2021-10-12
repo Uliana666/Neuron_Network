@@ -27,6 +27,8 @@ memory
 -
 utility
 -
+Apply.hpp
+/home/uliana/Neuron_Network/Apply.hpp
 
 /home/uliana/Neuron_Network/Layer.hpp
 Tensor.hpp
@@ -55,28 +57,8 @@ memory
 -
 
 /home/uliana/Neuron_Network/Node.hpp
-
-/home/uliana/Neuron_Network/NodeTree.h
-Node.hpp
-/home/uliana/Neuron_Network/Node.hpp
-memory
--
-
-/home/uliana/Neuron_Network/Operations.hpp
-cmath
--
-memory
--
-unordered_map
--
-utility
--
-NodeTree.h
-/home/uliana/Neuron_Network/NodeTree.h
-Node.hpp
-/home/uliana/Neuron_Network/Node.hpp
-GraphCalc.hpp
-/home/uliana/Neuron_Network/GraphCalc.hpp
+Tensor.hpp
+/home/uliana/Neuron_Network/Tensor.hpp
 
 /home/uliana/Neuron_Network/Tensor.hpp
 iostream
@@ -101,8 +83,8 @@ Network.hpp
 /home/uliana/Neuron_Network/Network.hpp
 Functions.hpp
 /home/uliana/Neuron_Network/Functions.hpp
-Operations.hpp
-/home/uliana/Neuron_Network/Operations.hpp
+GraphCalc.hpp
+/home/uliana/Neuron_Network/GraphCalc.hpp
 Apply.hpp
 /home/uliana/Neuron_Network/Apply.hpp
 

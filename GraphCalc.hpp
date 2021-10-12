@@ -28,12 +28,11 @@ struct const_val : Node<T> {
     void Back() override {}
 };
 
-template<CTensor T, CTensor T1, CTensor T2>
+template<CTensor T>
 struct add : Node<T> {
-    std::shared_ptr<Node<T1>> child1;
-    std::shared_ptr<Node<T2>> child2;
+    std::shared_ptr<Node<T>> child1, child2;
 
-    add(std::shared_ptr<Node<T1>> a, std::shared_ptr<Node<T2>> b) : child1(std::move(a)), child2(std::move(b)) {
+    add(std::shared_ptr<Node<T>> a, std::shared_ptr<Node<T>> b) : child1(std::move(a)), child2(std::move(b)) {
         Node<T>::val = child1->val + child2->val;
     }
 

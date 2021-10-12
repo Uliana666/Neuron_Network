@@ -35,6 +35,23 @@ struct add : Node<T> {
     }
 };
 
+template<CTensor T, CTensor T1>
+struct add_b : Node<T> {
+    std::shared_ptr<Node<T>> child1;
+    std::shared_ptr<Node<T1>> child2;
+
+    add_b(std::shared_ptr<Node<T>> a, std::shared_ptr<Node<T1>> b) : child1(std::move(a)), child2(std::move(b)) {
+        Node<T>::val = child1->val;
+        for (auto &e: Node<T>::val) e += child2->val;
+    }
+
+    void Back() override {
+        child1->grad += Node<T>::grad;
+        for (auto &e: Node<T>::grad) child2->grad += e;
+        child1->Back(), child2->Back();
+    }
+};
+
 template<CTensor T, CTensor T1, CTensor T2>
 
 struct sub : Node<T> {
@@ -154,6 +171,41 @@ struct multy_matrix : Node<Tensor<T, len1, len2>> {
         child1->grad += multy(Node<Tensor<T, len1, len2>>::grad, Transposition(child2->val));
         child2->grad += multy(Transposition(child1->val), Node<Tensor<T, len1, len2>>::grad);
         child1->Back(), child2->Back();
+    }
+};
+
+template<CTensor T, class TFunction>
+
+struct Function : Node<T> {
+    std::shared_ptr<Node<T>> child;
+    TFunction &f;
+
+    explicit Function(std::shared_ptr<Node<T>> a, TFunction &f) : child(std::move(a)), f(f) {
+        Node<T>::val = ForwardFunction(child->val, f);
+    }
+
+    void Back() override {
+        child->grad += Node<T>::grad * BackwardFunction(child->val, f);
+        child->Back();
+    }
+};
+
+template<CTensor T, class TFunction>
+
+struct FunctionLoss : Node<T> {
+    std::shared_ptr<Node<T>> child1, child2;
+    TFunction &f;
+
+    explicit FunctionLoss(std::shared_ptr<Node<T>> out, std::shared_ptr<Node<T>> test, TFunction &f) : child1(
+            std::move(out)), child2(std::move(test)), f(f) {
+        Node<T>::val = f.Forward(child1->val, child2->val);
+    }
+
+    void Back() override {
+        T kek;
+        f.Backward(child1->val, child2->val, kek);
+        child1->grad += Node<T>::grad * kek;
+        child1->Back();
     }
 };
 

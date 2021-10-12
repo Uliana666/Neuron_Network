@@ -3,6 +3,7 @@
 
 CMakeFiles/Neuron_Network.dir/main.cpp.o: \
  ../Apply.hpp \
+ ../AutogradOperations.hpp \
  ../Functions.hpp \
  ../GraphCalc.hpp \
  ../Layer.hpp \

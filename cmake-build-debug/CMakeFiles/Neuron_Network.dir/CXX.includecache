@@ -10,6 +10,12 @@
 Functions.hpp
 /home/uliana/Neuron_Network/Functions.hpp
 
+/home/uliana/Neuron_Network/AutogradOperations.hpp
+memory
+/home/uliana/Neuron_Network/memory
+GraphCalc.hpp
+/home/uliana/Neuron_Network/GraphCalc.hpp
+
 /home/uliana/Neuron_Network/Functions.hpp
 iostream
 -
@@ -87,4 +93,6 @@ GraphCalc.hpp
 /home/uliana/Neuron_Network/GraphCalc.hpp
 Apply.hpp
 /home/uliana/Neuron_Network/Apply.hpp
+AutogradOperations.hpp
+/home/uliana/Neuron_Network/AutogradOperations.hpp
 

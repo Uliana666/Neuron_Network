@@ -12,7 +12,7 @@
 #include <memory>
 
 using namespace std;
-Sigmoid sigm;
+/*Sigmoid sigm;
 Softmax sfmx;
 Tangh tgnt;
 LinearFunction linr;
@@ -26,9 +26,9 @@ TanghBack tgntb;
 LinearFunctionBack linrb;
 ReLuBack relub;
 CrossEntropyBack crs_eb;
-ErrorSquaredBack er_sqb;
+ErrorSquaredBack er_sqb;*/
 
-template<size_t deep>
+/*template<size_t deep>
 struct Network {
     double speed = 0.00003;
     Tensor<double, deep, 2> out_data;
@@ -89,7 +89,7 @@ struct Network {
         lay1.Step(), lay2.Step(), lay3.Step();
     }
 
-};
+};*/
 
 
 #endif

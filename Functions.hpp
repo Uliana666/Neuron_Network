@@ -8,28 +8,45 @@
 
 struct Sigmoid {
 
-    double operator()(double x) {
+    static double Forward(double x) {
         return 1. / (1. + exp(-2. * x));
+    }
+
+    static double Backward(double x) {
+        return 2. * Forward(x) * (1. - Forward(x));
     }
 
 };
 
 struct Tangh {
 
-    double operator()(double x) {
+    static double Forward(double x) {
         return (exp(x) - exp(-x)) / (exp(x) + exp(-x));
+    }
+
+    static double Backward(double x) {
+        Tangh calc;
+        return 1. - Forward(x) * Forward(x);
     }
 };
 
 struct LinearFunction {
-    double operator()(double x) {
+    static double Forward(double x) {
+        return x;
+    }
+
+    static double Backward(double x) {
         return x;
     }
 };
 
 struct ReLu {
-    double operator()(double x) {
+    static double Forward(double x) {
         return x < 0 ? 0.01 * x : x;
+    }
+
+    static double Backward(double x) {
+        return x < 0 ? 0.01 : 1.;
     }
 };
 
@@ -56,50 +73,32 @@ struct CrossEntropy {
             return res;
         }
     }
+
 };
 
 struct ErrorSquared {
     template<CTensor T>
-    double operator()(const T &out, const T &test) {
+    double Forward(const T &out, const T &test) {
         if constexpr(T::dim == 0) return (out.data - test.data) * (out.data - test.data);
         else {
             double res = 0;
             for (size_t i = 0; i < T::n; ++i)
-                res += (*this)(out[i], test[i]);
+                res += Forward(out[i], test[i]);
             return res / T::n;
+        }
+    }
+    template<CTensor T>
+    void Backward(T &out, const T &test, T& res) {
+        if constexpr(T::dim == 0) res = 2. * (out.data - test.data);
+        else {
+            for (size_t i = 0; i < T::n; ++i)
+                Backward(out[i], test[i], res[i]);
+            res /= T::n;
         }
     }
 };
 
 //Back_function
-struct SigmoidBack {
-
-    double operator()(double x) {
-        Sigmoid calc;
-        return 2. * calc(x) * (1. - calc(x));
-    }
-
-};
-
-struct TanghBack {
-
-    double operator()(double x) {
-        Tangh calc;
-        return 1. - calc(x) * calc(x);
-    }
-};
-
-struct LinearFunctionBack {
-    double operator()(double x) {
-        return x;
-    }
-};
-
-struct ReLuBack {
-    double operator()(double x) {
-        return x < 0 ? 0.01 : 1.;
-    }
-};
 
 struct SoftmaxBack {
     template<CTensor T>
@@ -133,16 +132,5 @@ struct CrossEntropyBack {
     }
 };
 
-struct ErrorSquaredBack {
-    template<CTensor T>
-    void operator()(T &out, const T &test) {
-        if constexpr(T::dim == 0) out = 2. * (out.data - test.data);
-        else {
-            for (size_t i = 0; i < T::n; ++i)
-                (*this)(out[i], test[i]);
-            out /= T::n;
-        }
-    }
-};
 
 #endif

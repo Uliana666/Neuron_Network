@@ -89,13 +89,13 @@
 		<Unit filename="/home/uliana/Neuron_Network/Apply.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/Expression.hpp">
+		<Unit filename="/home/uliana/Neuron_Network/AutogradOperations.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Functions.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/GraphCalc.h">
+		<Unit filename="/home/uliana/Neuron_Network/GraphCalc.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Layer.hpp">
@@ -105,12 +105,6 @@
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Node.hpp">
-			<Option target="Neuron_Network"/>
-		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/NodeTree.h">
-			<Option target="Neuron_Network"/>
-		</Unit>
-		<Unit filename="/home/uliana/Neuron_Network/Operations.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Tensor.hpp">

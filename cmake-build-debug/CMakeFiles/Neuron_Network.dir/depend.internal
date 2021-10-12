@@ -3,6 +3,7 @@
 
 CMakeFiles/Neuron_Network.dir/main.cpp.o
  /home/uliana/Neuron_Network/Apply.hpp
+ /home/uliana/Neuron_Network/AutogradOperations.hpp
  /home/uliana/Neuron_Network/Functions.hpp
  /home/uliana/Neuron_Network/GraphCalc.hpp
  /home/uliana/Neuron_Network/Layer.hpp

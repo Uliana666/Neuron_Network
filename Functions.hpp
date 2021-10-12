@@ -64,7 +64,7 @@ struct Softmax {
 
 struct CrossEntropy {
     template<CTensor T>
-    double operator()(const T &out, const T &test) {
+    double Forward(const T &out, const T &test) {
         if constexpr(T::dim == 0) return -test.data * log(out.data);
         else {
             double res = 0;
@@ -72,6 +72,15 @@ struct CrossEntropy {
                 res += (*this)(out[i], test[i]);
             return res;
         }
+    }
+    template<CTensor T>
+    void Backward(T &out, const T &test) {
+        if constexpr(T::dim == 0) {
+            if (test.data > 0.) out = -test.data / out.data;
+            else out = 0;
+        } else
+            for (size_t i = 0; i < T::n; ++i)
+                (*this)(out[i], test[i]);
     }
 
 };
@@ -120,17 +129,6 @@ struct SoftmaxBack {
     }
 };
 
-struct CrossEntropyBack {
-    template<CTensor T>
-    void operator()(T &out, const T &test) {
-        if constexpr(T::dim == 0) {
-            if (test.data > 0.) out = -test.data / out.data;
-            else out = 0;
-        } else
-            for (size_t i = 0; i < T::n; ++i)
-                (*this)(out[i], test[i]);
-    }
-};
 
 
 #endif

@@ -32,10 +32,10 @@ struct Network {
 
     std::shared_ptr<Node<Tensor<double, deep, 2>>> ForwardProp(Tensor<double, deep, 2> &data) {
         auto input = CreateAuto(data);
-        auto x1 = Func(input, linr);
-        auto x2 = Func(lay1.calc(x1), tgnt);
-        auto x3 = Func(lay2.calc(x2), tgnt);
-        auto res = Func(lay3.calc(x3), tgnt);
+        auto x1 = Func(input, relu);
+        auto x2 = Func(lay1.calc(x1), relu);
+        auto x3 = Func(lay2.calc(x2), relu);
+        auto res = Func(lay3.calc(x3), relu);
         return res;
     }
 

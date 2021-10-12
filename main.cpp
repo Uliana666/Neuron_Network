@@ -11,21 +11,25 @@
 using namespace std;
 CrossEntropyBack crs_eb0;
 #define kek Tensor<double, 2>
+#define kek2 Tensor<double>
 
 int main() {
     kek xx(1), yy(2);
     auto x = make_shared<variable<kek>>(xx);
     auto y = make_shared<variable<kek>>(yy);
-    auto cnt = make_shared<variable<Tensor<double, 2>>>(Tensor<double, 2>(2));
-    std::shared_ptr<Node<kek>> v = make_shared<mul<kek>>(make_shared<add<kek>>(x, y), make_shared<exp_f<kek>>(
-            make_shared<pow_f<kek>>(x, cnt)));
-    //std::shared_ptr<Node<kek>> v = make_shared<pow_f<kek>>(x, y);
+    auto cnt = make_shared<variable<kek2>>(kek2(2));
+    std::shared_ptr<Node<kek>> v = make_shared<mul<kek, kek, kek>>(make_shared<add<kek, kek, kek>>(x, y),
+                                                                   make_shared<exp_f<kek>>(
+                                                                           make_shared<pow_f<kek, kek, kek2>>(x, cnt)));
+    //std::shared_ptr<Node<kek>> v = make_shared<pow_f<kek, kek, kek>>(x, y);
+    //std::shared_ptr<Node<kek>> v = make_shared<add<kek, kek, kek2>>(x, cnt);
     cout << "OK\n";
     v->grad.fill(1);
     cout << v->val << endl;
     v->Back();
     cout << x->grad << endl;
     cout << y->grad << endl;
+    cout << cnt->grad << endl;
 }
 /*int main() {
     const size_t buk = 20;

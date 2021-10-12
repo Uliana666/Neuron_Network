@@ -17,11 +17,12 @@ struct variable : Node<T> {
     void Back() override { }
 };
 
-template<CTensor T>
+template<CTensor T, CTensor T1, CTensor T2>
 struct add : Node<T> {
-    std::shared_ptr<Node<T>> child1, child2;
+    std::shared_ptr<Node<T1>> child1;
+    std::shared_ptr<Node<T2>> child2;
 
-    add(std::shared_ptr<Node<T>> a, std::shared_ptr<Node<T>> b) : child1(std::move(a)), child2(std::move(b)) {
+    add(std::shared_ptr<Node<T1>> a, std::shared_ptr<Node<T2>> b) : child1(std::move(a)), child2(std::move(b)) {
         Node<T>::val = child1->val + child2->val;
     }
 
@@ -49,12 +50,13 @@ struct sub : Node<T> {
     }
 };
 
-template<CTensor T>
+template<CTensor T, CTensor T1, CTensor T2>
 
 struct mul : Node<T> {
-    std::shared_ptr<Node<T>> child1, child2;
+    std::shared_ptr<Node<T1>> child1;
+    std::shared_ptr<Node<T2>> child2;
 
-    mul(std::shared_ptr<Node<T>> a, std::shared_ptr<Node<T>> b) : child1(std::move(a)), child2(std::move(b)) {
+    mul(std::shared_ptr<Node<T1>> a, std::shared_ptr<Node<T2>> b) : child1(std::move(a)), child2(std::move(b)) {
         Node<T>::val = child1->val * child2->val;
     }
 
@@ -65,11 +67,13 @@ struct mul : Node<T> {
     }
 };
 
-template<CTensor T>
-struct del : Node<T> {
-    std::shared_ptr<Node<T>> child1, child2;
+template<CTensor T, CTensor T1, CTensor T2>
 
-    del(std::shared_ptr<Node<T>> a, std::shared_ptr<Node<T>> b) : child1(std::move(a)), child2(std::move(b)) {
+struct del : Node<T> {
+    std::shared_ptr<Node<T1>> child1;
+    std::shared_ptr<Node<T2>> child2;
+
+    del(std::shared_ptr<Node<T1>> a, std::shared_ptr<Node<T2>> b) : child1(std::move(a)), child2(std::move(b)) {
         Node<T>::val = child1->val / child2->val;
     }
 
@@ -80,17 +84,18 @@ struct del : Node<T> {
     }
 };
 
-template<CTensor T>
+template<CTensor T, CTensor T1, CTensor T2>
 
 struct pow_f : Node<T> {
-    std::shared_ptr<Node<T>> child1, child2;
+    std::shared_ptr<Node<T1>> child1;
+    std::shared_ptr<Node<T2>> child2;
 
-    pow_f(std::shared_ptr<Node<T>> a, std::shared_ptr<Node<T>> b) : child1(std::move(a)), child2(std::move(b)) {
+    pow_f(std::shared_ptr<Node<T1>> a, std::shared_ptr<Node<T2>> b) : child1(std::move(a)), child2(std::move(b)) {
         Node<T>::val = pow(child1->val, child2->val);
     }
 
     void Back() override {
-        child1->grad += Node<T>::grad * (child2->val) * pow(child1->val, child2->val - 1);
+        child1->grad += Node<T>::grad * (child2->val) * pow(child1->val, child2->val - 1.);
         child2->grad += Node<T>::grad * Node<T>::val * Activate(child1->val, logl);
         child1->Back(), child2->Back();
     }

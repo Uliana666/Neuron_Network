@@ -15,22 +15,16 @@ int main() {
     double xx = 1, yy = 2;
     auto x = make_shared<variable>(xx);
     auto y = make_shared<variable>(yy);
-    //std::shared_ptr<NodeTree> v = make_shared<mul>(make_shared<add>(x, y),
-    //make_shared<expp>(make_shared<poww>(x, make_shared<constant>(2))));
-    std::shared_ptr<NodeTree> v = make_shared<mul>(x, y);
+    std::shared_ptr<NodeTree> v = make_shared<mul>(make_shared<add>(x, y),
+    make_shared<expp>(make_shared<poww>(x, make_shared<constant>(2))));
+    //std::shared_ptr<NodeTree> v = make_shared<mul>(x, y);
     //Expression v = Mul(Pow(x, y), Constant(2));
     //Expression v = Add(Add(Mul(Pow(x, Constant(2)), Constant(3)), Mul(Constant(2), x)), Constant(4));
     v->Calc();
     auto g = v->val;
+    g->grad = 1;
     cout << g->val << endl;
-    g->Back(1);
-    cout << x->grad << endl;
-    cout << y->grad << endl;
-    xx = 6, yy = 8;
-    v->Calc();
-    g = v->val;
-    cout << g->val << endl;
-    g->Back(1);
+    g->Back();
     cout << x->grad << endl;
     cout << y->grad << endl;
 }

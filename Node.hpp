@@ -3,8 +3,9 @@
 
 struct Node {
     double val{};
+    double grad = 0;
 
-    virtual void Back(double y) = 0;
+    virtual void Back() = 0;
 
     virtual ~Node() = default;
 };

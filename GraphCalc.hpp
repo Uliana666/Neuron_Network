@@ -12,9 +12,10 @@ struct addf : Node {
         val = child1->val + child2->val;
     }
 
-    void Back(double y) {
-        child1->Back(y);
-        child2->Back(y);
+    void Back() override {
+        child1->grad += grad;
+        child2->grad += grad;
+        child1->Back(), child2->Back();
     }
 };
 
@@ -25,9 +26,10 @@ struct subf : Node {
         val = child1->val - child2->val;
     }
 
-    void Back(double y) {
-        child1->Back(y);
-        child2->Back(-y);
+    void Back() override {
+        child1->grad += grad;
+        child2->grad += -grad;
+        child1->Back(), child2->Back();
     }
 };
 
@@ -38,9 +40,10 @@ struct mulf : Node {
         val = child1->val * child2->val;
     }
 
-    void Back(double y) {
-        child1->Back(y * child2->val);
-        child2->Back(y * child1->val);
+    void Back() override {
+        child1->grad += grad * child2->val;
+        child2->grad += grad * child1->val;
+        child1->Back(), child2->Back();
     }
 };
 
@@ -51,9 +54,10 @@ struct delf : Node {
         val = child1->val / child2->val;
     }
 
-    void Back(double y) {
-        child1->Back(y / child2->val);
-        child2->Back(-y / child1->val / child1->val);
+    void Back() override {
+        child1->grad += grad / child2->val;
+        child2->grad += -grad / child1->val / child1->val;
+        child1->Back(), child2->Back();
     }
 };
 
@@ -64,9 +68,10 @@ struct powff : Node {
         val = pow(child1->val, child2->val);
     }
 
-    void Back(double y) {
-        child1->Back(y * (child2->val) * pow(child1->val, child2->val - 1));
-        child2->Back(-y * val * log(child1->val));
+    void Back() override {
+        child1->grad += grad * (child2->val) * pow(child1->val, child2->val - 1);
+        child2->grad += -grad * val * log(child1->val);
+        child1->Back(), child2->Back();
     }
 };
 
@@ -77,8 +82,9 @@ struct unsubf : Node {
         val = -child->val;
     }
 
-    void Back(double y) {
-        child->Back(-y);
+    void Back() override {
+        child->grad += -grad;
+        child->Back();
     }
 };
 
@@ -89,21 +95,20 @@ struct expff : Node {
         val = exp(child->val);
     }
 
-    void Back(double y) {
-        child->Back(y * val);
+    void Back() override {
+        child->grad += grad * val;
+        child->Back();
     }
 };
 
 struct valf : Node {
-    double &grad;
+    double &gradient;
 
-    explicit valf(double x, double &where) : grad(where) {
+    explicit valf(double x, double &where) : gradient(where) {
         val = x;
     }
 
-    void Back(double y) {
-        grad += y;
-    }
+    void Back() override { gradient += grad; }
 };
 
 struct constf : Node {
@@ -111,7 +116,7 @@ struct constf : Node {
         val = x;
     }
 
-    void Back(double y) {}
+    void Back() override {}
 };
 
 #endif

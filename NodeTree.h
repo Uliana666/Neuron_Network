@@ -5,7 +5,6 @@
 #include <memory>
 
 struct NodeTree {
-    double grad = 0;
     std::shared_ptr<Node> val;
 
     virtual void Calc() = 0;

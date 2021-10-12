@@ -11,6 +11,7 @@
 
 struct variable : NodeTree {
     double &var;
+    double grad = 0;
 
     explicit variable(double & x) : var(x) {};
 

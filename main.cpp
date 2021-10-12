@@ -15,7 +15,7 @@ int main() {
         for (int j = 0; j < buk; ++j) test >> v[j] >> g[j];
         net.Learn(v, g);
         std::cout << i << std::endl;
-        if ((i + 1) % 1 == 0) net.Step();
+        net.Step();
     }
     std::cout << "GO" << std::endl;
     while (true) {

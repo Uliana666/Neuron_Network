@@ -179,22 +179,22 @@ struct Tensor<T, len, sizes...> {
         return *this;
     }
 
-    Tensor<T, len, sizes...> operator+(const T &x) {
+    Tensor operator+(const T &x) {
         auto N = *this;
         return (N += x);
     }
 
-    Tensor<T, len, sizes...> operator-(const T &x) {
+    Tensor operator-(const T &x) {
         auto N = *this;
         return (N -= x);
     }
 
-    Tensor<T, len, sizes...> operator*(const T &x) {
+    Tensor operator*(const T &x) {
         auto N = *this;
         return (N *= x);
     }
 
-    Tensor<T, sizes...> operator/(const T &x) {
+    Tensor operator/(const T &x) {
         auto N = *this;
         return (N /= x);
     }

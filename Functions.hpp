@@ -69,7 +69,7 @@ struct CrossEntropy {
         else {
             double res = 0;
             for (size_t i = 0; i < T::n; ++i)
-                res += (*this)(out[i], test[i]);
+                res += Forward(out[i], test[i]);
             return res;
         }
     }

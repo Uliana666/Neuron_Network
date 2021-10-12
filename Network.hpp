@@ -47,7 +47,7 @@ struct Network {
     template<size_t deep>
     void BackwardProp(const Tensor<double, deep, 2> &test, std::shared_ptr<Node<Tensor<double, deep, 2>>> res) {
         auto test_ = CreateAuto(test);
-        auto final = Function_loss(res, test_, er_sq);
+        auto final = Function_loss(res, test_, crs_e);
         std::cout << final->val[0] << ' ';
         final->grad.fill(1);
         final->Back();

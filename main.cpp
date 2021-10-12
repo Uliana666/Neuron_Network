@@ -20,7 +20,7 @@ int main() {
     auto cnt = make_shared<variable<kek2>>(kek2(2));
     std::shared_ptr<Node<kek>> v = make_shared<mul<kek, kek, kek>>(make_shared<add<kek, kek, kek>>(x, y),
                                                                    make_shared<exp_f<kek>>(
-                                                                           make_shared<pow_f<kek, kek, kek2>>(x, cnt)));
+                                                                           make_shared<pow_f<kek, kek, double>>(x, cnt)));
     //std::shared_ptr<Node<kek>> v = make_shared<pow_f<kek, kek, kek>>(x, y);
     //std::shared_ptr<Node<kek>> v = make_shared<add<kek, kek, kek2>>(x, cnt);
     cout << "OK\n";

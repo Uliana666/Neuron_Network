@@ -125,58 +125,8 @@ struct Tensor<T> {
         return 0;
     }
 
-    template<size_t len, size_t... sizes>
-    Tensor<T> operator+=(const Tensor<T, len, sizes...> &t) {
-        for (auto &e: t.data) (*this) += e;
-        return *this;
-    }
-
-    template<size_t len, size_t... sizes>
-    Tensor<T> operator-=(const Tensor<T, len, sizes...> &t) {
-        for (auto &e: t.data) (*this) -= e;
-        return *this;
-    }
-
-    template<size_t len, size_t... sizes>
-
-    Tensor<T> operator*=(const Tensor<T, len, sizes...> &t) {
-        for (auto &e: t.data) (*this) *= e;
-        return *this;
-    }
-
-    template<size_t len, size_t... sizes>
-
-    Tensor<T> operator/=(const Tensor<T, len, sizes...> &t) {
-        for (auto &e: t.data) (*this) /= e;
-        return *this;
-    }
-
-    template<size_t len, size_t... sizes>
-
-    Tensor<T> operator+(const Tensor<T, len, sizes...> &t) {
-        auto n = *this;
-        return (n += t);
-    }
-
-    template<size_t len, size_t... sizes>
-
-    Tensor<T> operator-(const Tensor<T, len, sizes...> &t) {
-        auto n = *this;
-        return (n -= t);
-    }
-
-    template<size_t len, size_t... sizes>
-
-    Tensor<T> operator*(const Tensor<T, len, sizes...> &t) {
-        auto n = *this;
-        return (n *= t);
-    }
-
-    template<size_t len, size_t... sizes>
-
-    Tensor<T> operator/(const Tensor<T, len, sizes...> &t) {
-        auto n = *this;
-        return (n /= t);
+    T SumElement() {
+        return data;
     }
 };
 
@@ -322,6 +272,12 @@ struct Tensor<T, len, sizes...> {
         static_assert(from < to && to <= n);
         return *reinterpret_cast<Tensor<T, to - from, sizes...> *>(&data[from]);
     }
+
+    T SumElement() {
+        T res = 0;
+        for (auto &e: data) res += e.SumElement();
+        return res;
+    }
 };
 
 template<class T, size_t len, size_t... sizes>
@@ -390,10 +346,12 @@ template<class T, size_t len, size_t... sizes>
 void powInline(Tensor<T, len, sizes...> &a, const Tensor<T, len, sizes...> &b) {
     for (size_t i = 0; i < len; ++i) powInline(a[i], b[i]);
 }
+
 template<class T, size_t len, size_t... sizes>
 void powInline(Tensor<T, len, sizes...> &a, const Tensor<T> &b) {
     for (size_t i = 0; i < len; ++i) powInline(a[i], b);
 }
+
 template<class T, size_t len, size_t... sizes, size_t... dims>
 Tensor<T, len, sizes...> pow(const Tensor<T, len, sizes...> &a, const Tensor<T, dims...> &b) {
     auto N = a;

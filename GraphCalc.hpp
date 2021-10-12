@@ -14,7 +14,7 @@ struct variable : Node<T> {
         Node<T>::val = x;
     }
 
-    void Back() override { }
+    void Back() override {}
 };
 
 template<CTensor T, CTensor T1, CTensor T2>
@@ -27,8 +27,10 @@ struct add : Node<T> {
     }
 
     void Back() override {
-        child1->grad += Node<T>::grad;
-        child2->grad += Node<T>::grad;
+        if constexpr(T1::dim == 0) child1->grad += Node<T>::grad.SumElement();
+        else child1->grad += Node<T>::grad;
+        if constexpr(T2::dim == 0) child2->grad += Node<T>::grad.SumElement();
+        else child2->grad += Node<T>::grad;
         child1->Back(), child2->Back();
     }
 };
@@ -44,8 +46,10 @@ struct sub : Node<T> {
     }
 
     void Back() override {
-        child1->grad += Node<T>::grad;
-        child2->grad += -Node<T>::grad;
+        if constexpr(T1::dim == 0) child1->grad += Node<T>::grad.SumElement();
+        else child1->grad += Node<T>::grad;
+        if constexpr(T2::dim == 0) child2->grad -= Node<T>::grad.SumElement();
+        else child2->grad -= Node<T>::grad;
         child1->Back(), child2->Back();
     }
 };
@@ -61,8 +65,10 @@ struct mul : Node<T> {
     }
 
     void Back() override {
-        child1->grad += Node<T>::grad * child2->val;
-        child2->grad += Node<T>::grad * child1->val;
+        if constexpr(T1::dim == 0) child1->grad += (Node<T>::grad * child2->val).SumElement();
+        else child1->grad += Node<T>::grad * child2->val;
+        if constexpr(T2::dim == 0) child2->grad += (Node<T>::grad * child1->val).SumElement();
+        else child2->grad += Node<T>::grad * child1->val;
         child1->Back(), child2->Back();
     }
 };
@@ -78,25 +84,28 @@ struct del : Node<T> {
     }
 
     void Back() override {
-        child1->grad += Node<T>::grad / child2->val;
-        child2->grad += -Node<T>::grad / child1->val / child1->val;
+        if constexpr(T1::dim == 0) child1->grad += (Node<T>::grad / child2->val).SumElement();
+        else child1->grad += Node<T>::grad / child2->val;
+        if constexpr(T2::dim == 0) child2->grad -= (Node<T>::grad / child1->val / child1->val).SumElement();
+        else child2->grad -= Node<T>::grad / child1->val / child1->val;
         child1->Back(), child2->Back();
     }
 };
 
-template<CTensor T, CTensor T1, CTensor T2>
+template<CTensor T, CTensor T1, class C>
 
 struct pow_f : Node<T> {
     std::shared_ptr<Node<T1>> child1;
-    std::shared_ptr<Node<T2>> child2;
+    std::shared_ptr<Node<Tensor<C>>> child2;
 
-    pow_f(std::shared_ptr<Node<T1>> a, std::shared_ptr<Node<T2>> b) : child1(std::move(a)), child2(std::move(b)) {
+    pow_f(std::shared_ptr<Node<T1>> a, std::shared_ptr<Node<Tensor<C>>> b) : child1(std::move(a)),
+                                                                             child2(std::move(b)) {
         Node<T>::val = pow(child1->val, child2->val);
     }
 
     void Back() override {
         child1->grad += Node<T>::grad * (child2->val) * pow(child1->val, child2->val - 1.);
-        child2->grad += Node<T>::grad * Node<T>::val * Activate(child1->val, logl);
+        child2->grad += (Node<T>::grad * Node<T>::val * Activate(child1->val, logl)).SumElement();
         child1->Back(), child2->Back();
     }
 };

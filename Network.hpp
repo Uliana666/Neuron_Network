@@ -25,7 +25,8 @@ struct Network {
     double speed = 0.08;
     Layer<2, 4> lay1{speed};
     Layer<4, 4> lay2{speed};
-    Layer<4, 2> lay3{speed};
+    Layer<4, 4> lay3{speed};
+    Layer<4, 2> lay4{speed};
     double cnt = 0;
 
     template<size_t deep>
@@ -35,12 +36,13 @@ struct Network {
         auto x1 = Func(input, relu);
         auto x2 = Func(lay1.calc(x1), relu);
         auto x3 = Func(lay2.calc(x2), tgnt);
-        auto res = SoftMax(lay3.calc(x3));
+        auto x4 = Func(lay3.calc(x3), tgnt);
+        auto res = SoftMax(lay4.calc(x4));
         return res;
     }
 
     void Step() {
-        lay1.Step(cnt), lay2.Step(cnt), lay3.Step(cnt);
+        lay1.Step(cnt), lay2.Step(cnt), lay3.Step(cnt), lay4.Step(cnt);
         cnt = 0;
     }
 

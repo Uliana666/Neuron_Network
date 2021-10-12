@@ -140,5 +140,21 @@ struct exp_f : Node<T> {
     }
 };
 
+template<class T, size_t len1, size_t k, size_t len2>
+struct multy_matrix : Node<Tensor<T, len1, len2>> {
+    std::shared_ptr<Node<Tensor<T, len1, k>>> child1;
+    std::shared_ptr<Node<Tensor<T, k, len2>>> child2;
+
+    multy_matrix(std::shared_ptr<Node<Tensor<T, len1, k>>> a, std::shared_ptr<Node<Tensor<T, k, len2>>> b) : child1(
+            std::move(a)), child2(std::move(b)) {
+        Node<Tensor<T, len1, len2>>::val = multy(child1->val, child2->val);
+    }
+
+    void Back() override {
+        child1->grad += multy(Node<Tensor<T, len1, len2>>::grad, Transposition(child2->val));
+        child2->grad += multy(Transposition(child1->val), Node<Tensor<T, len1, len2>>::grad);
+        child1->Back(), child2->Back();
+    }
+};
 
 #endif

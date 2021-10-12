@@ -18,16 +18,6 @@ struct variable : Node<T> {
 };
 
 template<CTensor T>
-
-struct const_val : Node<T> {
-    explicit const_val(T x) {
-        Node<T>::val = x;
-    }
-
-    void Back() override {}
-};
-
-template<CTensor T>
 struct add : Node<T> {
     std::shared_ptr<Node<T>> child1, child2;
 

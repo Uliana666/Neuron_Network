@@ -63,5 +63,8 @@ template<CTensor T, class TFunction>
 std::shared_ptr<Node<T>> Function_loss(std::shared_ptr<Node<T>> out, std::shared_ptr<Node<T>> test, TFunction &f) {
     return std::make_shared<FunctionLoss<T, TFunction>>(out, test, f);
 }
-
+template<CTensor T>
+std::shared_ptr<Node<T>> SoftMax(std::shared_ptr<Node<T>> a) {
+    return std::make_shared<SoftmaxFunction<T>>(a);
+}
 #endif

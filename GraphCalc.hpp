@@ -209,4 +209,22 @@ struct FunctionLoss : Node<T> {
     }
 };
 
+template<CTensor T>
+struct SoftmaxFunction : Node<T> {
+    std::shared_ptr<Node<T>> child;
+
+    explicit SoftmaxFunction(std::shared_ptr<Node<T>> arg) : child(std::move(arg)) {
+        Softmax kek;
+        Node<T>::val = Activate<1>(child->val, kek);
+    }
+
+    void Back() override {
+        SoftmaxBack kek;
+        T res;
+        kek(Node<T>::grad, child->val, res);
+        child->grad += res;
+        child->Back();
+    }
+};
+
 #endif

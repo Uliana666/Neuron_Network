@@ -23,7 +23,6 @@ struct Layer {
     }
 
     void Step(double cnt) {
-        std::cout << cnt << std::endl;
         w->val -= (w->grad * (speed / cnt));
         b->val -= (b->grad * (speed / cnt));
         b->grad.fill(), w->grad.fill();

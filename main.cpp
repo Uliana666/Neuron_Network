@@ -11,7 +11,7 @@ int main() {
     Network net;
     std::ifstream test("test_circle");
     Tensor<double, buk, 2> v, g;
-    for (int i = 0; i < 500000 / buk; ++i) {
+    for (int i = 0; i < 1000000 / buk; ++i) {
         for (int j = 0; j < buk; ++j) test >> v[j] >> g[j];
         net.Learn(v, g);
         std::cout << i << std::endl;

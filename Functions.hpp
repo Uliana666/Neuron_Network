@@ -73,14 +73,15 @@ struct CrossEntropy {
             return res;
         }
     }
+
     template<CTensor T>
-    void Backward(T &out, const T &test) {
+    void Backward(T &out, const T &test, T &res) {
         if constexpr(T::dim == 0) {
-            if (test.data > 0.) out = -test.data / out.data;
-            else out = 0;
+            if (test.data > 0.) res = -test.data / out.data;
+            else res = 0;
         } else
             for (size_t i = 0; i < T::n; ++i)
-                (*this)(out[i], test[i]);
+                Backward(out[i], test[i], res[i]);
     }
 
 };
@@ -96,8 +97,9 @@ struct ErrorSquared {
             return res / T::n;
         }
     }
+
     template<CTensor T>
-    void Backward(T &out, const T &test, T& res) {
+    void Backward(T &out, const T &test, T &res) {
         if constexpr(T::dim == 0) res = 2. * (out.data - test.data);
         else {
             for (size_t i = 0; i < T::n; ++i)
@@ -128,7 +130,6 @@ struct SoftmaxBack {
         }
     }
 };
-
 
 
 #endif

@@ -14,9 +14,8 @@ CrossEntropyBack crs_eb0;
 
 int main() {
     kek xx(1), yy(2);
-    kek xgr(0), ygr(0);
-    auto x = make_shared<variable<kek>>(xx, xgr);
-    auto y = make_shared<variable<kek>>(yy, ygr);
+    auto x = make_shared<variable<kek>>(xx);
+    auto y = make_shared<variable<kek>>(yy);
     auto cnt = make_shared<const_val<Tensor<double, 2>>>(Tensor<double, 2>(2));
     std::shared_ptr<Node<kek>> v = make_shared<mul<kek>>(make_shared<add<kek>>(x, y), make_shared<exp_f<kek>>(
             make_shared<pow_f<kek>>(x, cnt)));

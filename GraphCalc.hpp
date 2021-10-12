@@ -9,13 +9,12 @@
 template<CTensor T>
 
 struct variable : Node<T> {
-    T &gradient;
 
-    explicit variable(T x, T &where) : gradient(where) {
+    explicit variable(T x) {
         Node<T>::val = x;
     }
 
-    void Back() override { gradient += Node<T>::grad; }
+    void Back() override { }
 };
 
 template<CTensor T>

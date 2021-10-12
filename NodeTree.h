@@ -6,8 +6,9 @@
 
 struct NodeTree {
     double grad = 0;
+    std::shared_ptr<Node> val;
 
-    virtual std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) = 0;
+    virtual void Calc() = 0;
 
     virtual ~NodeTree() = default;
 };

@@ -10,12 +10,12 @@
 #include "GraphCalc.hpp"
 
 struct variable : NodeTree {
-    string name;
+    double &var;
 
-    explicit variable(string s) : name(std::move(s)) {};
+    explicit variable(double & x) : var(x) {};
 
-    std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<valf>((*data.find(name)).second, grad);
+    void Calc() override {
+        val = std::make_shared<valf>(var, grad);
     }
 };
 
@@ -24,8 +24,9 @@ struct add : NodeTree {
 
     add(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(std::move(a)), child2(std::move(b)) {}
 
-    std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<addf>(child1->Calc(data), child2->Calc(data));
+    void Calc() override {
+        child1->Calc(), child2->Calc();
+        val = std::make_shared<addf>(child1->val, child2->val);
     }
 };
 
@@ -34,8 +35,9 @@ struct sub : NodeTree {
 
     sub(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(std::move(a)), child2(std::move(b)) {}
 
-    std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<subf>(child1->Calc(data), child2->Calc(data));
+    void Calc() override {
+        child1->Calc(), child2->Calc();
+        val = std::make_shared<subf>(child1->val, child2->val);
     }
 };
 
@@ -44,8 +46,9 @@ struct mul : NodeTree {
 
     mul(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(std::move(a)), child2(std::move(b)) {}
 
-    std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<mulf>(child1->Calc(data), child2->Calc(data));
+    void Calc() override {
+        child1->Calc(), child2->Calc();
+        val = std::make_shared<mulf>(child1->val, child2->val);
     }
 };
 
@@ -54,8 +57,9 @@ struct del : NodeTree {
 
     del(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(std::move(a)), child2(std::move(b)) {}
 
-    std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<delf>(child1->Calc(data), child2->Calc(data));
+    void Calc() override {
+        child1->Calc(), child2->Calc();
+        val = std::make_shared<delf>(child1->val, child2->val);
     }
 };
 
@@ -64,8 +68,9 @@ struct poww : NodeTree {
 
     poww(std::shared_ptr<NodeTree> a, std::shared_ptr<NodeTree> b) : child1(std::move(a)), child2(std::move(b)) {}
 
-    std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<powff>(child1->Calc(data), child2->Calc(data));
+    void Calc() override {
+        child1->Calc(), child2->Calc();
+        val = std::make_shared<powff>(child1->val, child2->val);
     }
 };
 
@@ -74,8 +79,9 @@ struct unSubb : NodeTree {
 
     explicit unSubb(std::shared_ptr<NodeTree> a) : child(std::move(a)) {}
 
-    std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<unsubf>(child->Calc(data));
+    void Calc() override {
+        child->Calc();
+        val = std::make_shared<unsubf>(child->val);
     }
 };
 
@@ -84,19 +90,20 @@ struct expp : NodeTree {
 
     explicit expp(std::shared_ptr<NodeTree> a) : child(std::move(a)) {}
 
-    std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<expff>(child->Calc(data));
+    void Calc() override {
+        child->Calc();
+        val = std::make_shared<expff>(child->val);
     }
 };
 
 
 struct constant : NodeTree {
-    double val;
+    double value;
 
-    explicit constant(double x) : val(x) {}
+    explicit constant(double x) : value(x) {}
 
-    std::shared_ptr<Node> Calc(const std::unordered_map<string, double> &data) override {
-        return std::make_shared<constf>(val);
+    void Calc() override {
+        val = std::make_shared<constf>(value);
     }
 };
 

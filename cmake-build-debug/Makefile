@@ -129,6 +129,54 @@ Neuron_Network/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/build
 .PHONY : Neuron_Network/fast
 
+MCST.o: MCST.cpp.o
+.PHONY : MCST.o
+
+# target to build an object file
+MCST.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/MCST.cpp.o
+.PHONY : MCST.cpp.o
+
+MCST.i: MCST.cpp.i
+.PHONY : MCST.i
+
+# target to preprocess a source file
+MCST.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/MCST.cpp.i
+.PHONY : MCST.cpp.i
+
+MCST.s: MCST.cpp.s
+.PHONY : MCST.s
+
+# target to generate assembly for a file
+MCST.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/MCST.cpp.s
+.PHONY : MCST.cpp.s
+
+board.o: board.cpp.o
+.PHONY : board.o
+
+# target to build an object file
+board.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/board.cpp.o
+.PHONY : board.cpp.o
+
+board.i: board.cpp.i
+.PHONY : board.i
+
+# target to preprocess a source file
+board.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/board.cpp.i
+.PHONY : board.cpp.i
+
+board.s: board.cpp.s
+.PHONY : board.s
+
+# target to generate assembly for a file
+board.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuron_Network.dir/build.make CMakeFiles/Neuron_Network.dir/board.cpp.s
+.PHONY : board.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +210,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Neuron_Network"
+	@echo "... MCST.o"
+	@echo "... MCST.i"
+	@echo "... MCST.s"
+	@echo "... board.o"
+	@echo "... board.i"
+	@echo "... board.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

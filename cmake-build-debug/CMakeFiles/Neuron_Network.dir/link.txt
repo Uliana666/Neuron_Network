@@ -1,1 +1,1 @@
-/usr/bin/g++-11 -g CMakeFiles/Neuron_Network.dir/main.cpp.o -o Neuron_Network 
+/usr/bin/g++-11 -g CMakeFiles/Neuron_Network.dir/main.cpp.o CMakeFiles/Neuron_Network.dir/board.cpp.o CMakeFiles/Neuron_Network.dir/MCST.cpp.o -o Neuron_Network 

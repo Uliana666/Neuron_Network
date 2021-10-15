@@ -101,6 +101,9 @@
 		<Unit filename="/home/uliana/Neuron_Network/Layer.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/MCST.cpp">
+			<Option target="Neuron_Network"/>
+		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Network.hpp">
 			<Option target="Neuron_Network"/>
 		</Unit>
@@ -108,6 +111,12 @@
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/Tensor.hpp">
+			<Option target="Neuron_Network"/>
+		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/board.cpp">
+			<Option target="Neuron_Network"/>
+		</Unit>
+		<Unit filename="/home/uliana/Neuron_Network/board.h">
 			<Option target="Neuron_Network"/>
 		</Unit>
 		<Unit filename="/home/uliana/Neuron_Network/main.cpp">

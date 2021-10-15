@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Neuron_Network.dir/MCST.cpp.o"
+  "CMakeFiles/Neuron_Network.dir/board.cpp.o"
   "CMakeFiles/Neuron_Network.dir/main.cpp.o"
   "Neuron_Network"
   "Neuron_Network.pdb"

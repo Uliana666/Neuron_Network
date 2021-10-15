@@ -4,10 +4,7 @@
 #include "random"
 
 const int DEEP = 100, MAXN = 5e6;
-struct vertex;
-vertex ver[MAXN];
 std::mt19937 rnd;
-int cnt = 1;
 Board game(6);
 
 bool GetRandomMove(Board &b) {
@@ -29,7 +26,7 @@ double PlayRandomGame(Board b) {
 }
 
 struct vertex {
-    std::vector<int> child{6, nullptr};
+    std::vector<vertex*> child{6, nullptr};
     Board board;
     double n, result;
     bool type, check;

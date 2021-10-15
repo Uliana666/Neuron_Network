@@ -4,7 +4,7 @@
 
 #include "Network.hpp"
 #include "Functions.hpp"
-#include "board.h"
+#include "interactor/board.h"
 
 
 /*int main() {

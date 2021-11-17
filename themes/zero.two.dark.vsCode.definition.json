@@ -1,0 +1,16 @@
+{
+  "id": "8c99ec4b-fda0-4ab7-95ad-a6bf80c3924b",
+  "overrides": {},
+  "laf": {
+    "extends": "dark-contrast",
+    "ui": {
+      "editor.selectionBackground": "&selectionBackground&66",
+      "selection.background": "&selectionBackground&aa",
+      "textLink.foreground": "&editorAccentColor&AA",
+      "textLink.activeForeground": "&editorAccentColor&",
+      "statusBarItem.prominentBackground": "&selectionBackground&DD"
+    }
+  },
+  "syntax": {},
+  "colors": {}
+}
